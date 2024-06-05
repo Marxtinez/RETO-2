@@ -9,6 +9,9 @@ public class Trabajador {
     private String cargo;
     private String persona_contacto;
     private String CIF;
+
+
+
     public Trabajador(int id_trabajador, String email, String nombre, String telefono, String cargo, String persona_contacto, String CIF){
         this.id_trabajador=id_trabajador;
         this.email=email;
@@ -74,5 +77,17 @@ public class Trabajador {
 
     public void setCIF(String CIF) {
         this.CIF = CIF;
+    }
+    @Override
+    public String toString() {
+        return "Trabajador{" +
+                "id_trabajador=" + id_trabajador +
+                ", email='" + email + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", cargo='" + cargo + '\'' +
+                ", persona_contacto='" + persona_contacto + '\'' +
+                ", CIF='" + CIF + '\'' +
+                '}';
     }
 }

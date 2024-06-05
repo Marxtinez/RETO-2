@@ -5,7 +5,12 @@ public class FCT {
   private String CIF;
   private String curso;
   private int num_alumnos;
-
+    public FCT(String id_grupo, String CIF, String curso, int num_alumnos) {
+        this.id_grupo = id_grupo;
+        this.CIF = CIF;
+        this.curso = curso;
+        this.num_alumnos = num_alumnos;
+    }
     public String getId_grupo() {
         return id_grupo;
     }
@@ -38,10 +43,13 @@ public class FCT {
         this.num_alumnos = num_alumnos;
     }
 
-    public FCT(String id_grupo, String CIF, String curso, int num_alumnos) {
-        this.id_grupo = id_grupo;
-        this.CIF = CIF;
-        this.curso = curso;
-        this.num_alumnos = num_alumnos;
+    @Override
+    public String toString() {
+        return "FCT{" +
+                "id_grupo='" + id_grupo + '\'' +
+                ", CIF='" + CIF + '\'' +
+                ", curso='" + curso + '\'' +
+                ", num_alumnos=" + num_alumnos +
+                '}';
     }
 }
