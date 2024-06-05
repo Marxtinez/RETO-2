@@ -85,4 +85,18 @@ public class Empresa {
     public void setUlt_anio_colab(int ult_anio_colab) {
         this.ult_anio_colab = ult_anio_colab;
     }
+
+    @Override
+    public String toString() {
+        return "Empresa{" +
+                "CIF='" + CIF + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", tecnologias='" + tecnologias + '\'' +
+                ", sector='" + sector + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", num_empleados=" + num_empleados +
+                ", ult_anio_colab=" + ult_anio_colab +
+                '}';
+    }
 }
