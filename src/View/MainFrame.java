@@ -19,6 +19,9 @@ public class MainFrame extends JFrame {
 
 class MainPanel extends JPanel {
     JButton btn_profesor, btn_tutor, btn_configuracion;
+    JPanel master = new JPanel();
+    ControladorPanelPrincipal panelPrincipal;
+    PanelConfiguracion panelConfiguracion = new PanelConfiguracion();
     public MainPanel() {
         JPanel main = new JPanel();
         main.setLayout(new BoxLayout(main,BoxLayout.X_AXIS));
@@ -38,9 +41,9 @@ class MainPanel extends JPanel {
         btn_configuracion.setPreferredSize(dimensionBtn);
         btn_configuracion.setMaximumSize(dimensionBtn);
 
-        ControladorPanelPrincipal panelPrincipal = new ControladorPanelPrincipal(this,main);
+        panelPrincipal = new ControladorPanelPrincipal(this,master);
 
-        btn_configuracion.addActionListener(e-> panelPrincipal.nuevoPanelActivo(new PanelConfiguracion()));
+        btn_configuracion.addActionListener(e-> panelPrincipal.nuevoPanelActivo(panelConfiguracion));
 
         center.add(Box.createVerticalStrut(50));
         center.add(btn_profesor);
@@ -53,6 +56,6 @@ class MainPanel extends JPanel {
         main.add(center);
         main.add(Box.createHorizontalStrut(500));
 
-        add(main);
+        master.add(main);
     }
 }

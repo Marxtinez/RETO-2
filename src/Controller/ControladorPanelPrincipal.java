@@ -1,28 +1,34 @@
 package Controller;
 
 import javax.swing.*;
+import java.util.Stack;
 
 public class ControladorPanelPrincipal {
-    JPanel panelPadre, panelActivo, panelAntiguo;
+    static JPanel panelPadre, panelActivo;
+    static Stack<JPanel> listaPaneles = new Stack<>();
     public ControladorPanelPrincipal(JPanel panel1, JPanel panel2){
         panelPadre = panel1;
         panelActivo = panel2;
         panelPadre.add(panelActivo);
+        listaPaneles.add(panelActivo);
 
     }
-    public void nuevoPanelActivo(JPanel nuevoPanel){
+    public static void nuevoPanelActivo(JPanel nuevoPanel){
         panelPadre.remove(panelActivo);
         panelPadre.add(nuevoPanel);
         panelPadre.revalidate();
         panelPadre.repaint();
-        panelAntiguo = panelActivo;
         panelActivo = nuevoPanel;
+        listaPaneles.add(panelActivo);
     }
-    public void PanelAntiguo(){
-        panelPadre.remove(panelActivo);
-        panelPadre.add(panelAntiguo);
-        panelPadre.revalidate();
-        panelPadre.repaint();
-        panelActivo = panelAntiguo;
+    public static void panelAntiguo(){
+        if (listaPaneles.size()>1){
+            listaPaneles.pop();
+            panelPadre.remove(panelActivo);
+            panelActivo = listaPaneles.peek();
+            panelPadre.add(panelActivo);
+            panelPadre.revalidate();
+            panelPadre.repaint();
+        }
     }
 }

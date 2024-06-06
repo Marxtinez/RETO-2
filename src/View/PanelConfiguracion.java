@@ -1,6 +1,7 @@
 package View;
 
 import Controller.ControladorConexion;
+import Controller.ControladorPanelPrincipal;
 import Model.Idioma;
 
 import javax.swing.*;
@@ -10,7 +11,7 @@ public class PanelConfiguracion extends JPanel {
     JComboBox comboIdioma = new JComboBox<>();
     JLabel lblURl, lblUsuario, lblPassword;
     JTextField txtUrl,txtNombre,txtPassword;
-    JButton btnAcceder;
+    JButton btnAcceder,btnAtras;
     public PanelConfiguracion() {
         Idioma idioma = new Idioma(Idioma.spanish);
 
@@ -21,6 +22,7 @@ public class PanelConfiguracion extends JPanel {
         txtNombre = new JTextField(ControladorConexion.user);
         txtPassword = new JTextField(ControladorConexion.password);
         btnAcceder = new JButton(idioma.getProperty("acceder"));
+        btnAtras = new JButton(idioma.getProperty("atras"));
 
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
@@ -58,5 +60,9 @@ public class PanelConfiguracion extends JPanel {
         add(comboIdioma);
         add(Box.createVerticalStrut(50));
         add(panelContenido);
+        add(Box.createVerticalStrut(25));
+        add(btnAtras);
+
+        btnAtras.addActionListener(e->ControladorPanelPrincipal.panelAntiguo());
     }
 }
