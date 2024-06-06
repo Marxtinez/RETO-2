@@ -8,8 +8,9 @@ public class ControladorEmpresa {
 
     public static void cargaContenidoEmpresas(){
 
-            miConexion =DBConnection.getConnection("jdbc:postgres://192.168.109.1:6128/DBRETO", "postgres", "Virtual01");
+            miConexion =DBConnection.getConnection("jdbc:postgresql://192.168.109.1:5432/DBRETO", "postgres", "Virtual01");
 
     }
+
 
 }
