@@ -1,12 +1,13 @@
 package Controller;
 
-import java.sql.Connection;
+import java.sql.*;
+
 public class DBConnection {
     //Esto tiene que ser privado
     private static DBConnection instance;
 
     //Esto tiene que ser estático
-    private static java.sql.Connection connection;
+    private static Connection connection;
     //Constructor privado
     private DBConnection(String url, String user, String password){
         setConnection(url, user, password);
@@ -29,7 +30,7 @@ public class DBConnection {
     }
     private static void setConnection(String url, String user, String password){
         try {
-            connection = java.sql.DriverManager.getConnection(url, user, password);
+            connection = DriverManager.getConnection(url, user, password);
             System.out.println("Conexión realizada");
         }catch(java.sql.SQLException e){
             System.out.println("Connecting error: getConnection() " + e.getMessage());
