@@ -22,6 +22,7 @@ class MainPanel extends JPanel {
     JPanel master = new JPanel();
     ControladorPanelPrincipal panelPrincipal;
     PanelConfiguracion panelConfiguracion = new PanelConfiguracion();
+    PanelInicioSesionTutor panelInicioSesionTutor = new PanelInicioSesionTutor();
     public MainPanel() {
         JPanel main = new JPanel();
         main.setLayout(new BoxLayout(main,BoxLayout.X_AXIS));
@@ -44,6 +45,7 @@ class MainPanel extends JPanel {
         panelPrincipal = new ControladorPanelPrincipal(this,master);
 
         btn_configuracion.addActionListener(e-> panelPrincipal.nuevoPanelActivo(panelConfiguracion));
+        btn_tutor.addActionListener(e-> panelPrincipal.nuevoPanelActivo(panelInicioSesionTutor));
 
         center.add(Box.createVerticalStrut(50));
         center.add(btn_profesor);
