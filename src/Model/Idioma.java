@@ -11,15 +11,14 @@ public class Idioma extends Properties {
     public Idioma(int lang){
         switch(lang){
             case spanish:
-                getProperties("./src/Model/espanol.properties");
+                getProperties("./src/View/espanol.properties");
                 break;
             case english:
-                getProperties("./src/Model/ingles.properties");
+                getProperties("./src/View/ingles.properties");
                 break;
             default:
-                getProperties("./src/Model/espanol.properties");
+                getProperties("./src/View/espanol.properties");
         }
-
     }
 
     private void getProperties(String langFile) {

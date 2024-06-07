@@ -3,7 +3,7 @@ package Model;
 import java.util.HashMap;
 
 public class RegistroUsuarios {
-    HashMap tutores,profesores;
+    public HashMap<String,String> tutores,profesores;
     public RegistroUsuarios() {
         tutores = new HashMap<>();
         tutores.put("John Doe","AAAA");

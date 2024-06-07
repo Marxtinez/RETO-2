@@ -17,7 +17,7 @@ public class PanelConfiguracion extends JPanel {
 
         lblURl = new JLabel(idioma.getProperty("url"));
         lblUsuario = new JLabel(idioma.getProperty("usuario"));
-        lblPassword = new JLabel(idioma.getProperty("contraseña"));
+        lblPassword = new JLabel(idioma.getProperty("contrasena"));
         txtUrl = new JTextField(ControladorConexion.url);
         txtNombre = new JTextField(ControladorConexion.user);
         txtPassword = new JTextField(ControladorConexion.password);
@@ -26,7 +26,7 @@ public class PanelConfiguracion extends JPanel {
 
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
-        comboIdioma.addItem(idioma.getProperty("español"));
+        comboIdioma.addItem(idioma.getProperty("espanol"));
         comboIdioma.addItem(idioma.getProperty("ingles"));
 
         Dimension dimensionBtn = new Dimension(400,25);
