@@ -2,21 +2,15 @@ package Controller;
 
 import Model.Empresa;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class ControladorEmpresa {
     public static ArrayList<Empresa> empresas = new ArrayList<>();
 
     public static void cargaContenidoEmpresas() throws SQLException {
-
         Statement st = ControladorConexion.miConexion.createStatement();
-
         ResultSet rs_sqlLeerEmpresas = st.executeQuery("SELECT * FROM EMPRESA");
-
         while (rs_sqlLeerEmpresas.next()){
             empresas.add(new Empresa(rs_sqlLeerEmpresas.getString("cif"),
                     rs_sqlLeerEmpresas.getString("nombre"),
@@ -29,41 +23,70 @@ public class ControladorEmpresa {
         }
         st.close();
     }
-    public static void modificaEmpresa(Empresa empresaMod) throws SQLException {
-
-        //Primero cargo el array de empresas:
+    public static void modificaEmpresa(String cifModificar, String cif, String nombre, String direccion, String tecnologias, String sector, String telefono, int num_empleados, int ult_anio_colab) throws SQLException {
         cargaContenidoEmpresas();
-
+        Empresa empresaMod = new Empresa(cif,nombre,direccion,tecnologias,sector,telefono,num_empleados,ult_anio_colab);
         for (int i=0;i<empresas.size();i++){
-            if (empresas.get(i).getCIF().equals(empresaMod.getCIF())){
+            if (empresas.get(i).getCIF().equals(cifModificar)){
                 empresas.set(i,empresaMod);
+                break;
             }
         }
-
+        String sql = "UPDATE EMPRESA SET cif = ?, nombre = ?, direccion = ?, tecnologias = ?, sector = ?, telefono = ?, num_empleados = ?, ult_anio_colab = ? WHERE cif = ?";
+        PreparedStatement ps = ControladorConexion.miConexion.prepareStatement(sql);
+        ps.setString(1, cif);
+        ps.setString(2, nombre);
+        ps.setString(3, direccion);
+        ps.setString(4, tecnologias);
+        ps.setString(5, sector);
+        ps.setString(6, telefono);
+        ps.setInt(7, num_empleados);
+        ps.setInt(8, ult_anio_colab);
+        ps.setString(9, cifModificar);
+        ps.executeUpdate();
+        ps.close();
     }
-
-    public static void main(String[] args) throws SQLException {
-        /*empresas.add(new Empresa("CIF001", "Tech Innovations", "123 Silicon Valley", "AI, Cloud Computing", "Technology", "600123456", 150, 2023));
-        empresas.add(new Empresa("CIF002", "Green Energy", "456 Renewable Rd", "Solar, Wind", "Energy", "600234567", 200, 2022));
-        empresas.add(new Empresa("CIF003", "Health Solutions", "789 Wellness Blvd", "Telemedicine, AI", "Healthcare", "600345678", 120, 2021));
-        empresas.add(new Empresa("CIF004", "EduFuture", "101 Learning St", "EdTech, AI", "Education", "600456789", 180, 2023));
-        empresas.add(new Empresa("CIF005", "Fintech World", "202 Finance Ave", "Blockchain, AI", "Finance", "600567890", 250, 2022));
-        empresas.add(new Empresa("CIF006", "AgriCorp", "303 Farming Ln", "AgriTech, IoT", "Agriculture", "600678901", 100, 2021));
-        empresas.add(new Empresa("CIF007", "Retail Hub", "404 Commerce St", "E-commerce, Logistics", "Retail", "600789012", 300, 2023));
-        empresas.add(new Empresa("CIF008", "Auto Drive", "505 Motorway", "Autonomous Vehicles, AI", "Automotive", "600890123", 220, 2022));
-        empresas.add(new Empresa("CIF009", "BioGen", "606 Genome Pl", "Genomics, Biotech", "Biotechnology", "600901234", 130, 2021));
-        empresas.add(new Empresa("CIF010", "Urban Plan", "707 Metro Ave", "Smart Cities, IoT", "Urban Planning", "600012345", 140, 2023));
-
+    public static void agregaEmpresa(String cif, String nombre, String direccion, String tecnologias, String sector, String telefono, int num_empleados, int ult_anio_colab) {
+        Empresa nuevaEmpresa = new Empresa(cif, nombre, direccion, tecnologias, sector, telefono, num_empleados, ult_anio_colab);
+        String sql = "INSERT INTO EMPRESA (cif, nombre, direccion, tecnologias, sector, telefono, num_empleados, ult_anio_colab) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
-            modificaEmpresa(new Empresa("CIF004", "modificada", "modificada St", "mod", "Education", "600456789", 180, 2023));
+            PreparedStatement ps = ControladorConexion.miConexion.prepareStatement(sql);
+            ps.setString(1, cif);
+            ps.setString(2, nombre);
+            ps.setString(3, direccion);
+            ps.setString(4, tecnologias);
+            ps.setString(5, sector);
+            ps.setString(6, telefono);
+            ps.setInt(7, num_empleados);
+            ps.setInt(8, ult_anio_colab);
+            ps.executeUpdate();
+            ps.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(empresas.toString());*/
-
+        empresas.add(nuevaEmpresa);
+    }
+    public static void eliminaEmpresa(String cifEliminar) throws SQLException {
+        for (int i=0;i<empresas.size();i++){
+            if (empresas.get(i).getCIF().equals(cifEliminar)){
+                empresas.remove(i);
+                break;
+            }
+        }
+        String sql = "DELETE FROM EMPRESA WHERE cif = ?";
+        PreparedStatement ps = ControladorConexion.miConexion.prepareStatement(sql);
+        ps.setString(1, cifEliminar);
+        ps.executeUpdate();
+        ps.close();
+    }
+/*
+    public static void main(String[] args) throws SQLException {
         cargaContenidoEmpresas();
         System.out.println(empresas.toString());
+        //agregaEmpresa("prueba","prueba","prueba", "prueba", "prueba", "prueba", 1, 1);
+        //modificaEmpresa("prueba","pruebaMODIFICADA", "", "", "", "", "", 0, 0);
+        eliminaEmpresa("pruebaMODIFICADA");
     }
-
+*/
 
 }
