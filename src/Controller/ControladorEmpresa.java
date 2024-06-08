@@ -9,6 +9,7 @@ public class ControladorEmpresa {
     public static ArrayList<Empresa> empresas = new ArrayList<>();
 
     public static void cargaContenidoEmpresas() throws SQLException {
+        empresas.clear();
         Statement st = ControladorConexion.miConexion.createStatement();
         ResultSet rs_sqlLeerEmpresas = st.executeQuery("SELECT * FROM EMPRESA");
         while (rs_sqlLeerEmpresas.next()){
