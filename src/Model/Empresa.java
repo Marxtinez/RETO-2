@@ -88,15 +88,6 @@ public class Empresa {
 
     @Override
     public String toString() {
-        return "Empresa{" +
-                "CIF='" + CIF + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", tecnologias='" + tecnologias + '\'' +
-                ", sector='" + sector + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", num_empleados=" + num_empleados +
-                ", ult_anio_colab=" + ult_anio_colab +
-                '}';
+        return nombre;
     }
 }

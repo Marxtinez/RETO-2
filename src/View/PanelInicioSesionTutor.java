@@ -35,6 +35,11 @@ public class PanelInicioSesionTutor extends JPanel {
 
         btnAtras.addActionListener(e-> ControladorPanelPrincipal.panelAntiguo());
 
+
+        txtNombre.setText("Daniel Garcia");
+        txtPassword.setText("EEEE");
+
+
         add(Box.createVerticalStrut(50));
         add(lblNombre);
         add(txtNombre);
