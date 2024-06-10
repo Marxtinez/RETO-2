@@ -7,12 +7,12 @@ public class Trabajador {
     private String nombre;
     private String telefono;
     private String cargo;
-    private String persona_contacto;
+    private Boolean persona_contacto;
     private String CIF;
 
 
 
-    public Trabajador(int id_trabajador, String email, String nombre, String telefono, String cargo, String persona_contacto, String CIF){
+    public Trabajador(int id_trabajador, String email, String nombre, String telefono, String cargo, Boolean persona_contacto, String CIF){
         this.id_trabajador=id_trabajador;
         this.email=email;
         this.nombre=nombre;
@@ -20,6 +20,10 @@ public class Trabajador {
         this.cargo=cargo;
         this.persona_contacto=persona_contacto;
         this.CIF=CIF;
+
+    }
+
+    public Trabajador() {
 
     }
 
@@ -63,11 +67,11 @@ public class Trabajador {
         this.cargo = cargo;
     }
 
-    public String getPersona_contacto() {
+    public Boolean getPersona_contacto() {
         return persona_contacto;
     }
 
-    public void setPersona_contacto(String persona_contacto) {
+    public void setPersona_contacto(Boolean persona_contacto) {
         this.persona_contacto = persona_contacto;
     }
 

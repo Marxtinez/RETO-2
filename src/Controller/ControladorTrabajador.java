@@ -19,13 +19,13 @@ public static ArrayList<Trabajador> trabajadores=new ArrayList<>();
                         rs_scriptInfTrabajador.getString("nombre"),
                         rs_scriptInfTrabajador.getString("telefono"),
                         rs_scriptInfTrabajador.getString("cargo"),
-                        rs_scriptInfTrabajador.getString("persona_contacto"),
+                        rs_scriptInfTrabajador.getBoolean("persona_contacto"),
                         rs_scriptInfTrabajador.getString("CIF")));
             }
             st.close();
     }
     //Actualizar trabajador
-    public void actualizarTrabajador(int id_trabajadorModificar, int id_trabajador, String email, String nombre, String telefono, String cargo, String persona_contacto, String CIF) throws SQLException {
+    public void actualizarTrabajador(int id_trabajadorModificar, int id_trabajador, String email, String nombre, String telefono, String cargo, Boolean persona_contacto, String CIF) throws SQLException {
         obtenerInformacionTrabajador();
         Trabajador trabajadorMod = new Trabajador(id_trabajador, email, nombre, telefono, cargo, persona_contacto, CIF);
 
@@ -43,7 +43,7 @@ public static ArrayList<Trabajador> trabajadores=new ArrayList<>();
             ps.setString(3, nombre);
             ps.setString(4, telefono);
             ps.setString(5, cargo);
-            ps.setString(6, persona_contacto);
+            ps.setBoolean(6, persona_contacto);
             ps.setString(7, CIF);
             ps.setInt(8, id_trabajadorModificar);
             ps.executeUpdate();
@@ -72,7 +72,7 @@ public static ArrayList<Trabajador> trabajadores=new ArrayList<>();
 
 
     //Insertar trabajador
-    public void insertarTrabajador(int id_trabajador,String email,String nombre, String telefono, String cargo,String persona_contacto, String CIF){
+    public void insertarTrabajador(int id_trabajador,String email,String nombre, String telefono, String cargo,Boolean persona_contacto, String CIF){
         Trabajador nuevoTrabajador= new Trabajador(id_trabajador, email, nombre, telefono, cargo, persona_contacto, CIF);
         String scriptIntTrabajador="INSERT INTO trabajador(id_trabajador,email,nombre,telefono,cargo,persona_contacto,CIF) VALUES(?,?,?,?,?,?)";
         try {
@@ -82,7 +82,7 @@ public static ArrayList<Trabajador> trabajadores=new ArrayList<>();
             statement.setString(3,nombre);
             statement.setString(4,telefono);
             statement.setString(5,cargo);
-            statement.setString(6,persona_contacto);
+            statement.setBoolean(6,persona_contacto);
             statement.setString(7, CIF);
             statement.executeUpdate();
             statement.close();
@@ -105,7 +105,7 @@ public static ArrayList<Trabajador> trabajadores=new ArrayList<>();
                         resultSet.getString("nombre"),
                         resultSet.getString("telefono"),
                         resultSet.getString("cargo"),
-                        resultSet.getString("persona_contacto"),
+                        resultSet.getBoolean("persona_contacto"),
                         resultSet.getString("CIF")
                 );
                 trabajadores.add(trabajador);

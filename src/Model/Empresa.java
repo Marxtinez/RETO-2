@@ -21,6 +21,8 @@ public class Empresa {
         this.ult_anio_colab = ult_anio_colab;
     }
 
+    public Empresa() {
+    }
 
     public String getCIF() {
         return CIF;

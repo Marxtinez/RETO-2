@@ -13,6 +13,10 @@ public class TutorFCT {
         this.telefono = telefono;
     }
 
+    public TutorFCT() {
+
+    }
+
     public int getId_tutor() {
         return id_tutor;
     }
