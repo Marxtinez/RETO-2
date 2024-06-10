@@ -16,6 +16,7 @@ public class ControladorConsultaEmpresaPorCIF {
     static ArrayList<EmpresaTutorTrabajador> resultados;
 
     public static void cargaConsultaEmpresa(String CIF) throws SQLException {
+        resultados.clear();
 
         String consultaSQL = "SELECT \n" +
                 "    e.cif AS CIF,\n" +
@@ -77,11 +78,9 @@ public class ControladorConsultaEmpresaPorCIF {
                     trabajador.setPersona_contacto(rs.getBoolean("Persona_Contacto"));
 
                     EmpresaTutorTrabajador resultado = new EmpresaTutorTrabajador(empresa, tutor, trabajador);
-
                     resultados.add(resultado);
                 }
             }
-
     }
 
     public static void main(String[] args) {
