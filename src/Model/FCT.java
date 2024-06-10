@@ -45,11 +45,6 @@ public class FCT {
 
     @Override
     public String toString() {
-        return "FCT{" +
-                "id_grupo='" + id_grupo + '\'' +
-                ", CIF='" + CIF + '\'' +
-                ", curso='" + curso + '\'' +
-                ", num_alumnos=" + num_alumnos +
-                '}';
+        return id_grupo;
     }
 }

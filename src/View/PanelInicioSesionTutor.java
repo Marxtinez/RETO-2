@@ -21,10 +21,13 @@ public class PanelInicioSesionTutor extends JPanel {
         txtNombre = new JTextField();
         txtPassword = new JTextField();
 
-        lblNombre.setAlignmentX(Component.RIGHT_ALIGNMENT);
-        lblPassword.setAlignmentX(Component.RIGHT_ALIGNMENT);
-
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+
+        JPanel panelFormX = new JPanel();
+        panelFormX.setLayout(new BoxLayout(panelFormX,BoxLayout.X_AXIS));
+
+        JPanel panelFormY = new JPanel();
+        panelFormY.setLayout(new BoxLayout(panelFormY,BoxLayout.Y_AXIS));
 
         JPanel panelBotones = new JPanel();
         panelBotones.setLayout(new BoxLayout(panelBotones,BoxLayout.X_AXIS));
@@ -40,13 +43,16 @@ public class PanelInicioSesionTutor extends JPanel {
         txtPassword.setText("EEEE");
 
 
-        add(Box.createVerticalStrut(50));
-        add(lblNombre);
-        add(txtNombre);
-        add(Box.createVerticalStrut(15));
-        add(lblPassword);
-        add(txtPassword);
-        add(Box.createVerticalStrut(25));
+        panelFormY.add(Box.createVerticalStrut(50));
+        panelFormY.add(lblNombre);
+        panelFormY.add(txtNombre);
+        panelFormY.add(Box.createVerticalStrut(15));
+        panelFormY.add(lblPassword);
+        panelFormY.add(txtPassword);
+        panelFormY.add(Box.createVerticalStrut(25));
+
+        panelFormX.add(panelFormY);
+        add(panelFormX);
         add(panelBotones);
 
         btnEntrar.addActionListener(e->ControladorInicoSesion.cambioPanelTutor(this));
