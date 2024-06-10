@@ -6,6 +6,7 @@ import Model.Empresa;
 import Model.Idioma;
 
 import javax.swing.*;
+import java.sql.SQLException;
 
 public class PanelModificarEmpresa extends JPanel {
     JTextField txtCif,txtNombre,txtDireccion,txtTecnologias,txtSector,txtTelefono,txtEmpleados,txtUltColab;
@@ -49,7 +50,14 @@ public class PanelModificarEmpresa extends JPanel {
         txtUltColab = new JTextField();
 
         btnAtras.addActionListener(e-> ControladorPanelPrincipal.panelAntiguo());
-        btnAgregar.addActionListener(e->{});
+        btnAgregar.addActionListener(e->{
+            try {
+                ControladorEmpresa.modificaEmpresa(PanelOpcionesTutor.panelConsultaEmpresaTutor.cifMod,txtCif.getText(),txtNombre.getText(),txtDireccion.getText(),txtTecnologias.getText(),txtSector.getText(),txtTelefono.getText(),Integer.valueOf(txtEmpleados.getText()),Integer.valueOf(txtUltColab.getText()),PanelOpcionesTutor.panelConsultaEmpresaTutor);
+                ControladorPanelPrincipal.panelAntiguo();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         panelBotones.add(btnAgregar);
         panelBotones.add(Box.createHorizontalStrut(10));

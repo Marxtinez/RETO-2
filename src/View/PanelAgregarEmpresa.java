@@ -5,12 +5,14 @@ import Controller.ControladorPanelPrincipal;
 import Model.Idioma;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class PanelAgregarEmpresa extends JPanel {
     JTextField txtCif,txtNombre,txtDireccion,txtTecnologias,txtSector,txtTelefono,txtEmpleados,txtUltColab;
     JButton btnAtras,btnAgregar;
-    JLabel lblCif,lblNombre,lblDireccion,lblTecnologias,lblSector,lblTelefono,lblEmpleados,lblUltColab;
+    JLabel lblCif,lblNombre,lblDireccion,lblTecnologias,lblSector,lblTelefono,lblEmpleados,lblUltColab,lblResultado;
     public PanelAgregarEmpresa() {
         Idioma idioma = new Idioma(Idioma.spanish);
 
@@ -48,10 +50,12 @@ public class PanelAgregarEmpresa extends JPanel {
         txtNombre = new JTextField();
         txtUltColab = new JTextField();
 
+        lblResultado = new JLabel();
+        lblResultado.setAlignmentX(CENTER_ALIGNMENT);
+
         btnAtras.addActionListener(e-> ControladorPanelPrincipal.panelAntiguo());
         btnAgregar.addActionListener(e->{
                 ControladorEmpresa.agregaEmpresa(txtCif.getText(),txtNombre.getText(),txtDireccion.getText(),txtTecnologias.getText(),txtSector.getText(),txtTelefono.getText(),Integer.valueOf(txtEmpleados.getText()),Integer.valueOf(txtUltColab.getText()),PanelOpcionesTutor.panelConsultaEmpresaTutor);
-                ControladorPanelPrincipal.panelAntiguo();
                 txtCif.setText("");
                 txtDireccion.setText("");
                 txtNombre.setText("");
@@ -60,6 +64,15 @@ public class PanelAgregarEmpresa extends JPanel {
                 txtTecnologias.setText("");
                 txtTelefono.setText("");
                 txtUltColab.setText("");
+                lblResultado.setText("Empresa añadida correctamente");
+                Timer timer = new Timer(2500, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        lblResultado.setText("");
+                    }
+                });
+                timer.setRepeats(false);
+                timer.start();
         });
 
         panelBotones.add(btnAgregar);
@@ -95,7 +108,9 @@ public class PanelAgregarEmpresa extends JPanel {
         panelForm.add(panelDer);
 
         add(panelForm);
-        add(Box.createVerticalStrut(20));
+        add(Box.createVerticalStrut(10));
+        add(lblResultado);
+        add(Box.createVerticalStrut(10));
         add(panelBotones);
     }
 }

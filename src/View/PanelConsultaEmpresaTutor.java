@@ -17,6 +17,7 @@ public class PanelConsultaEmpresaTutor extends JPanel {
     JLabel lblCif,lblNombre,lblDireccion,lblTecnologias,lblSector,lblTelefono,lblEmpleados,lblUltColab;
     PanelAgregarEmpresa panelAgregarEmpresa = new PanelAgregarEmpresa();
     PanelModificarEmpresa panelModificarEmpresa;
+    public String cifMod;
 
     public PanelConsultaEmpresaTutor() throws SQLException {
         Idioma idioma = new Idioma(Idioma.spanish);
@@ -108,6 +109,7 @@ public class PanelConsultaEmpresaTutor extends JPanel {
             panelModificarEmpresa.txtTelefono.setText(txtTelefono.getText());
             panelModificarEmpresa.txtSector.setText(txtSector.getText());
             panelModificarEmpresa.txtUltColab.setText(txtUltColab.getText());
+            cifMod = txtCif.getText();
             ControladorPanelPrincipal.nuevoPanelActivo(panelModificarEmpresa);});
 
         panelBotones.add(btnAgregar);

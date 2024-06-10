@@ -25,12 +25,14 @@ public class ControladorEmpresa {
         }
         st.close();
     }
-    public static void modificaEmpresa(String cifModificar, String cif, String nombre, String direccion, String tecnologias, String sector, String telefono, int num_empleados, int ult_anio_colab) throws SQLException {
+    public static void modificaEmpresa(String cifModificar, String cif, String nombre, String direccion, String tecnologias, String sector, String telefono, int num_empleados, int ult_anio_colab,PanelConsultaEmpresaTutor panel) throws SQLException {
         cargaContenidoEmpresas();
         Empresa empresaMod = new Empresa(cif,nombre,direccion,tecnologias,sector,telefono,num_empleados,ult_anio_colab);
         for (int i=0;i<empresas.size();i++){
             if (empresas.get(i).getCIF().equals(cifModificar)){
                 empresas.set(i,empresaMod);
+                panel.comboEmpresa.removeItemAt(i);
+                panel.comboEmpresa.addItem(empresaMod);
                 break;
             }
         }
