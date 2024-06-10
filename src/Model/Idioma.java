@@ -11,13 +11,13 @@ public class Idioma extends Properties {
     public Idioma(int lang){
         switch(lang){
             case spanish:
-                getProperties("espanol.properties");
+                getProperties("./src/View/espanol.properties");
                 break;
             case english:
-                getProperties("ingles.properties");
+                getProperties("./src/View/ingles.properties");
                 break;
             default:
-                getProperties("espanol.properties");
+                getProperties("./src/View/espanol.properties");
         }
     }
 

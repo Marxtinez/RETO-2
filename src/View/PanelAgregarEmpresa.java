@@ -5,6 +5,7 @@ import Controller.ControladorPanelPrincipal;
 import Model.Idioma;
 
 import javax.swing.*;
+import java.sql.SQLException;
 
 public class PanelAgregarEmpresa extends JPanel {
     JTextField txtCif,txtNombre,txtDireccion,txtTecnologias,txtSector,txtTelefono,txtEmpleados,txtUltColab;
@@ -48,7 +49,18 @@ public class PanelAgregarEmpresa extends JPanel {
         txtUltColab = new JTextField();
 
         btnAtras.addActionListener(e-> ControladorPanelPrincipal.panelAntiguo());
-        btnAgregar.addActionListener(e->ControladorEmpresa.agregaEmpresa(txtCif.getText(),txtNombre.getText(),txtDireccion.getText(),txtTecnologias.getText(),txtSector.getText(),txtTelefono.getText(),Integer.valueOf(txtEmpleados.getText()),Integer.valueOf(txtUltColab.getText())));
+        btnAgregar.addActionListener(e->{
+                ControladorEmpresa.agregaEmpresa(txtCif.getText(),txtNombre.getText(),txtDireccion.getText(),txtTecnologias.getText(),txtSector.getText(),txtTelefono.getText(),Integer.valueOf(txtEmpleados.getText()),Integer.valueOf(txtUltColab.getText()),PanelOpcionesTutor.panelConsultaEmpresaTutor);
+                ControladorPanelPrincipal.panelAntiguo();
+                txtCif.setText("");
+                txtDireccion.setText("");
+                txtNombre.setText("");
+                txtEmpleados.setText("");
+                txtSector.setText("");
+                txtTecnologias.setText("");
+                txtTelefono.setText("");
+                txtUltColab.setText("");
+        });
 
         panelBotones.add(btnAgregar);
         panelBotones.add(Box.createHorizontalStrut(10));

@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Empresa;
+import View.PanelConsultaEmpresaTutor;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class ControladorEmpresa {
         ps.executeUpdate();
         ps.close();
     }
-    public static void agregaEmpresa(String cif, String nombre, String direccion, String tecnologias, String sector, String telefono, int num_empleados, int ult_anio_colab) {
+    public static void agregaEmpresa(String cif, String nombre, String direccion, String tecnologias, String sector, String telefono, int num_empleados, int ult_anio_colab, PanelConsultaEmpresaTutor panel) {
         Empresa nuevaEmpresa = new Empresa(cif, nombre, direccion, tecnologias, sector, telefono, num_empleados, ult_anio_colab);
         String sql = "INSERT INTO EMPRESA (cif, nombre, direccion, tecnologias, sector, telefono, num_empleados, ult_anio_colab) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
@@ -66,6 +67,7 @@ public class ControladorEmpresa {
             throw new RuntimeException(e);
         }
         empresas.add(nuevaEmpresa);
+        panel.comboEmpresa.addItem(nuevaEmpresa);
     }
     public static void eliminaEmpresa(String cifEliminar) throws SQLException {
         for (int i=0;i<empresas.size();i++){

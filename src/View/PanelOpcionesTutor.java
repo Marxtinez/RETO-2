@@ -7,6 +7,16 @@ import javax.swing.*;
 import java.sql.SQLException;
 
 public class PanelOpcionesTutor extends JPanel {
+    public static PanelConsultaEmpresaTutor panelConsultaEmpresaTutor;
+
+    static {
+        try {
+            panelConsultaEmpresaTutor = new PanelConsultaEmpresaTutor();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     JButton btnEmpresa;
     public PanelOpcionesTutor() throws SQLException {
         Idioma idioma = new Idioma(Idioma.spanish);
@@ -14,11 +24,7 @@ public class PanelOpcionesTutor extends JPanel {
         btnEmpresa = new JButton(idioma.getProperty("empresa"));
 
         btnEmpresa.addActionListener(e-> {
-            try {
-                ControladorPanelPrincipal.nuevoPanelActivo(new PanelConsultaEmpresaTutor());
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
+                ControladorPanelPrincipal.nuevoPanelActivo(panelConsultaEmpresaTutor);
         });
 
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));

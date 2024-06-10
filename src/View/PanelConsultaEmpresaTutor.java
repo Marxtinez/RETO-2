@@ -11,11 +11,12 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class PanelConsultaEmpresaTutor extends JPanel {
-    JComboBox<Empresa> comboEmpresa = new JComboBox<>();
+    public JComboBox<Empresa> comboEmpresa = new JComboBox<>();
     JTextField txtCif,txtNombre,txtDireccion,txtTecnologias,txtSector,txtTelefono,txtEmpleados,txtUltColab;
     JButton btnAtras,btnModificar,btnAgregar,btnEliminar;
     JLabel lblCif,lblNombre,lblDireccion,lblTecnologias,lblSector,lblTelefono,lblEmpleados,lblUltColab;
     PanelAgregarEmpresa panelAgregarEmpresa = new PanelAgregarEmpresa();
+    PanelModificarEmpresa panelModificarEmpresa;
 
     public PanelConsultaEmpresaTutor() throws SQLException {
         Idioma idioma = new Idioma(Idioma.spanish);
@@ -62,6 +63,15 @@ public class PanelConsultaEmpresaTutor extends JPanel {
         txtNombre = new JTextField(ControladorEmpresa.empresas.get(0).getNombre());
         txtUltColab = new JTextField(String.valueOf(ControladorEmpresa.empresas.get(0).getUlt_anio_colab()));
 
+        txtUltColab.setEditable(false);
+        txtSector.setEditable(false);
+        txtCif.setEditable(false);
+        txtNombre.setEditable(false);
+        txtEmpleados.setEditable(false);
+        txtDireccion.setEditable(false);
+        txtTecnologias.setEditable(false);
+        txtTelefono.setEditable(false);
+
         comboEmpresa.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -80,15 +90,25 @@ public class PanelConsultaEmpresaTutor extends JPanel {
         btnAtras.addActionListener(e-> ControladorPanelPrincipal.panelAntiguo());
         btnEliminar.addActionListener(e-> {
             try {
-                ControladorEmpresa.eliminaEmpresa(((Empresa) comboEmpresa.getSelectedItem()).getCIF());
-                for (Empresa empresa : ControladorEmpresa.empresas){
-                    comboEmpresa.addItem(empresa);
-                }
+                Empresa empresaSeleccionada = (Empresa) comboEmpresa.getSelectedItem();
+                ControladorEmpresa.eliminaEmpresa(empresaSeleccionada.getCIF());
+                comboEmpresa.removeItem(empresaSeleccionada);
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
         });
         btnAgregar.addActionListener(e->ControladorPanelPrincipal.nuevoPanelActivo(panelAgregarEmpresa));
+
+        panelModificarEmpresa = new PanelModificarEmpresa();
+        btnModificar.addActionListener(e->{panelModificarEmpresa.txtCif.setText(txtCif.getText());
+            panelModificarEmpresa.txtDireccion.setText(txtDireccion.getText());
+            panelModificarEmpresa.txtEmpleados.setText(txtEmpleados.getText());
+            panelModificarEmpresa.txtNombre.setText(txtNombre.getText());
+            panelModificarEmpresa.txtTecnologias.setText(txtTecnologias.getText());
+            panelModificarEmpresa.txtTelefono.setText(txtTelefono.getText());
+            panelModificarEmpresa.txtSector.setText(txtSector.getText());
+            panelModificarEmpresa.txtUltColab.setText(txtUltColab.getText());
+            ControladorPanelPrincipal.nuevoPanelActivo(panelModificarEmpresa);});
 
         panelBotones.add(btnAgregar);
         panelBotones.add(Box.createHorizontalStrut(10));
