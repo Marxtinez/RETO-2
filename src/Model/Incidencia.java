@@ -44,4 +44,14 @@ public class Incidencia {
     public void setCIF(String CIF) {
         this.CIF = CIF;
     }
+
+    @Override
+    public String toString() {
+        return "Incidencia{" +
+                "id_incidencia=" + id_incidencia +
+                ", descripcion='" + descripcion + '\'' +
+                ", fecha='" + fecha + '\'' +
+                ", CIF='" + CIF + '\'' +
+                '}';
+    }
 }

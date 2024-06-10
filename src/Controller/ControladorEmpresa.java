@@ -86,8 +86,8 @@ public class ControladorEmpresa {
         System.out.println(empresas.toString());
         //agregaEmpresa("prueba","prueba","prueba", "prueba", "prueba", "prueba", 1, 1);
         //modificaEmpresa("prueba","pruebaMODIFICADA", "", "", "", "", "", 0, 0);
-        eliminaEmpresa("pruebaMODIFICADA");
-    }
-*/
+        eliminaEmpresa("CIF010");
+    }*/
+
 
 }
