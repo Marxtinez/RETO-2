@@ -13,11 +13,9 @@ import java.util.ArrayList;
 
 //Consulta C1
 public class ControladorConsultaEmpresaPorCIF {
+    static ArrayList<EmpresaTutorTrabajador> resultados;
 
-    public static ArrayList<EmpresaTutorTrabajador> cargaConsultaEmpresa(String CIF) throws SQLException {
-
-        ArrayList<EmpresaTutorTrabajador> resultados = new ArrayList<>();
-
+    public static void cargaConsultaEmpresa(String CIF) throws SQLException {
 
         String consultaSQL = "SELECT \n" +
                 "    e.cif AS CIF,\n" +
@@ -51,12 +49,9 @@ public class ControladorConsultaEmpresaPorCIF {
                 "    e.cif = ?;";
         PreparedStatement ps = ControladorConexion.miConexion.prepareStatement(consultaSQL);
 
-            // Establecer el valor del parámetro
             ps.setString(1, CIF);
 
-            // Ejecutar la consulta
             try (ResultSet rs = ps.executeQuery()) {
-                // Mapear los resultados a objetos Java
                 while (rs.next()) {
                     Empresa empresa = new Empresa();
                     empresa.setCIF(rs.getString("CIF"));
@@ -87,15 +82,13 @@ public class ControladorConsultaEmpresaPorCIF {
                 }
             }
 
-
-        return resultados;
     }
 
     public static void main(String[] args) {
         try {
-            ArrayList<EmpresaTutorTrabajador> resultados = cargaConsultaEmpresa("CIF001");
+            cargaConsultaEmpresa("CIF001");
+
             for (EmpresaTutorTrabajador resultado : resultados) {
-                // Procesar cada objeto EmpresaTutorTrabajador
                 System.out.println(resultado.getEmpresa().toString());
                 System.out.println(resultado.getTrabajador().toString());
                 System.out.println(resultado.getTutorFCT().toString());
