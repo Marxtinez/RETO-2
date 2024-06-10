@@ -92,7 +92,6 @@ public static ArrayList<Trabajador> trabajadores=new ArrayList<>();
     }
 
     //Obtener trabajadores por empresa por el CIF
-    // Obtener trabajadores por empresa por el CIF
     public static void obtenerTrabajadorPorEmpresa(String CIF) throws SQLException {
         String scriptObtTraPorEmp = "SELECT * FROM trabajador WHERE CIF = ?";
         trabajadores.clear(); // Limpiar la lista antes de llenarla
