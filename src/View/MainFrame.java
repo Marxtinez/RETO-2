@@ -24,6 +24,7 @@ class MainPanel extends JPanel {
     ControladorPanelPrincipal panelPrincipal;
     PanelConfiguracion panelConfiguracion = new PanelConfiguracion();
     PanelInicioSesionTutor panelInicioSesionTutor = new PanelInicioSesionTutor();
+    PanelInicioSesionProf panelInicioSesionProf = new PanelInicioSesionProf();
     public MainPanel() throws SQLException {
         JPanel main = new JPanel();
         main.setLayout(new BoxLayout(main,BoxLayout.X_AXIS));
@@ -47,6 +48,7 @@ class MainPanel extends JPanel {
 
         btn_configuracion.addActionListener(e-> panelPrincipal.nuevoPanelActivo(panelConfiguracion));
         btn_tutor.addActionListener(e-> panelPrincipal.nuevoPanelActivo(panelInicioSesionTutor));
+        btn_profesor.addActionListener(e-> panelPrincipal.nuevoPanelActivo(panelInicioSesionProf));
 
         center.add(Box.createVerticalStrut(50));
         center.add(btn_profesor);

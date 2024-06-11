@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Incidencia;
+import View.PanelConsultaIncidenciaTutor;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class ControladorIncidencia {
         }
     }
 
-    public static void agregaIncidencia(String descripcion, String fecha, String CIF) {
+    public static void agregaIncidencia(String descripcion, String fecha, String CIF, PanelConsultaIncidenciaTutor panel) {
         String sql = "INSERT INTO INCIDENCIA (descripcion, fecha, CIF) VALUES (?, ?, ?)";
         try {
             PreparedStatement ps = ControladorConexion.miConexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -60,6 +61,7 @@ public class ControladorIncidencia {
 
             Incidencia nuevaIncidencia = new Incidencia(id_incidencia, descripcion, fecha, CIF);
             incidencias.add(nuevaIncidencia);
+            panel.comboIncidencia.addItem(nuevaIncidencia);
             ps.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -79,6 +81,20 @@ public class ControladorIncidencia {
         ps.setInt(1, id_incidencia);
         ps.executeUpdate();
         ps.close();
+    }
+
+    public static int siguienteValor() throws SQLException {
+        int id = 0;
+        Statement st = ControladorConexion.miConexion.createStatement();
+        ResultSet rs = st.executeQuery("SELECT last_value FROM public.incidencia_id_incidencia_seq");
+
+        while (rs.next()){
+            id = rs.getInt(1);
+        }
+
+        rs.close();
+        st.close();
+        return id;
     }
 
 /*
