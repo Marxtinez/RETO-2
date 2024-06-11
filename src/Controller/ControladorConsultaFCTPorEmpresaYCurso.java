@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class ControladorConsultaFCTPorEmpresaYCurso {
     public static ArrayList<EmpresaCursoFCT> resultados = new ArrayList<>();
-    public static void cargaConsultasFCTPorEmpresaYCurso(String cif, String curso){
+    public static void cargaConsultasFCTPorEmpresaYCursoC4(String cif, String curso){
         if (resultados != null) {
             resultados.clear();
         }
