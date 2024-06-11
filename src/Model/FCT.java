@@ -11,6 +11,11 @@ public class FCT {
         this.curso = curso;
         this.num_alumnos = num_alumnos;
     }
+
+    public FCT() {
+
+    }
+
     public String getId_grupo() {
         return id_grupo;
     }
