@@ -33,12 +33,12 @@ public class ControladorConsultaEmpresaTecnologia {
         throw new RuntimeException(e);
          }
     }
-/*
+
     public static void main(String[] args) {
         cargarConsultaEmpresaC7("AgriTech, IoT");
         for (EmpresaTecnologias resultado : resultados) {
             System.out.println("Nombre de la Empresa: " + resultado.getEmpresa().getNombre());
             System.out.println("Tecnologías: " + resultado.getEmpresa().getTecnologias());
         }
-    }*/
+    }
 }
