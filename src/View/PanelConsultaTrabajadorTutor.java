@@ -18,6 +18,8 @@ public class PanelConsultaTrabajadorTutor extends JPanel {
     JCheckBox checkContaco;
     JLabel lblIdTrabajador,lblNombre,lblTelefono,lblEmail,lblCargo,lblContaco,lblCif;
     JButton btnAgregar,btnEliminar,btnModificar,btnAtras;
+    PanelAgregarTrabajador panelAgregarTrabajador = new PanelAgregarTrabajador();
+    PanelModificarTrabajador panelModificarTrabajador = new PanelModificarTrabajador();
 
     public PanelConsultaTrabajadorTutor() throws SQLException {
         Idioma idioma = new Idioma(Idioma.spanish);
@@ -33,7 +35,7 @@ public class PanelConsultaTrabajadorTutor extends JPanel {
         lblIdTrabajador = new JLabel(idioma.getProperty("idtrabajador"));
         lblTelefono = new JLabel(idioma.getProperty("telefono"));
         lblCargo = new JLabel(idioma.getProperty("cargo"));
-        lblContaco = new JLabel(idioma.getProperty("contaco"));
+        lblContaco = new JLabel(idioma.getProperty("contacto"));
         lblCif = new JLabel(idioma.getProperty("cif"));
 
         JPanel panelBotones = new JPanel();
@@ -85,24 +87,27 @@ public class PanelConsultaTrabajadorTutor extends JPanel {
         });
 
         btnAtras.addActionListener(e-> ControladorPanelPrincipal.panelAntiguo());
-        /*btnAgregar.addActionListener(e-> {
-            ControladorPanelPrincipal.nuevoPanelActivo(panelAgregarTutor);});
+        btnAgregar.addActionListener(e-> {
+            ControladorPanelPrincipal.nuevoPanelActivo(panelAgregarTrabajador);});
         btnEliminar.addActionListener(e->{
             try {
-                TutorFCT tutorSeleccionado = (TutorFCT) comboTutores.getSelectedItem();
-                ControladorTutorFCT.eliminaTutor(tutorSeleccionado.getId_tutor());
-                comboTutores.removeItem(tutorSeleccionado);
+                Trabajador trabajadorSeleccionado = (Trabajador) comboTrabajador.getSelectedItem();
+               ControladorTrabajador.eliminarTrabajador(trabajadorSeleccionado.getId_trabajador());
+                comboTrabajador.removeItem(trabajadorSeleccionado);
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
         });
         btnModificar.addActionListener(e->{
-            panelModificarTutor.txtIdTutor.setText(txtIdTrabajador.getText());
-            panelModificarTutor.txtEmail.setText(txtEmail.getText());
-            panelModificarTutor.txtNombre.setText(txtNombre.getText());
-            panelModificarTutor.txtTelefono.setText(txtTelefono.getText());
-            ControladorPanelPrincipal.nuevoPanelActivo(panelModificarTutor);
-        });*/
+            panelModificarTrabajador.txtIdTrabajador.setText(txtIdTrabajador.getText());
+            panelModificarTrabajador.txtCargo.setText(txtCargo.getText());
+            panelModificarTrabajador.txtCif.setText(txtCif.getText());
+            panelModificarTrabajador.txtTelefono.setText(txtTelefono.getText());
+            panelModificarTrabajador.txtNombre.setText(txtNombre.getText());
+            panelModificarTrabajador.txtEmail.setText(txtEmail.getText());
+            panelModificarTrabajador.checkContaco.setSelected(checkContaco.isSelected());
+            ControladorPanelPrincipal.nuevoPanelActivo(panelModificarTrabajador);
+        });
 
         panelBotones.add(btnAgregar);
         panelBotones.add(Box.createHorizontalStrut(10));

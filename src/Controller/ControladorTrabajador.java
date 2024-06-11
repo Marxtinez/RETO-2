@@ -1,6 +1,9 @@
 package Controller;
 
 import Model.Trabajador;
+import View.PanelConsultaTrabajadorTutor;
+import View.PanelOpcionesTutor;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -25,27 +28,28 @@ public static ArrayList<Trabajador> trabajadores=new ArrayList<>();
             st.close();
     }
     //Actualizar trabajador
-    public void actualizarTrabajador(int id_trabajadorModificar, int id_trabajador, String email, String nombre, String telefono, String cargo, Boolean persona_contacto, String CIF) throws SQLException {
+    public static void actualizarTrabajador(int id_trabajadorModificar,String email, String nombre, String telefono, String cargo, Boolean persona_contacto, String CIF,PanelConsultaTrabajadorTutor panel) throws SQLException {
         obtenerInformacionTrabajador();
-        Trabajador trabajadorMod = new Trabajador(id_trabajador, email, nombre, telefono, cargo, persona_contacto, CIF);
+        Trabajador trabajadorMod = new Trabajador(id_trabajadorModificar, email, nombre, telefono, cargo, persona_contacto, CIF);
 
         for (int i = 0; i < trabajadores.size(); i++) {
             if (trabajadores.get(i).getId_trabajador() == id_trabajadorModificar) {
                 trabajadores.set(i, trabajadorMod);
+                panel.comboTrabajador.removeItemAt(i);
+                panel.comboTrabajador.addItem(trabajadorMod);
                 break;
             }
         }
 
-        String scriptActTrabajador = "UPDATE trabajador SET id_trabajador = ?, email = ?, nombre = ?, telefono = ?, cargo = ?, persona_contacto = ?, CIF = ? WHERE id_trabajador = ?";
+        String scriptActTrabajador = "UPDATE trabajador SET email = ?, nombre = ?, telefono = ?, cargo = ?, persona_contacto = ?, CIF = ? WHERE id_trabajador = ?";
         try (PreparedStatement ps = ControladorConexion.miConexion.prepareStatement(scriptActTrabajador)) {
-            ps.setInt(1, id_trabajador);
-            ps.setString(2, email);
-            ps.setString(3, nombre);
-            ps.setString(4, telefono);
-            ps.setString(5, cargo);
-            ps.setBoolean(6, persona_contacto);
-            ps.setString(7, CIF);
-            ps.setInt(8, id_trabajadorModificar);
+            ps.setString(1, email);
+            ps.setString(2, nombre);
+            ps.setString(3, telefono);
+            ps.setString(4, cargo);
+            ps.setBoolean(5, persona_contacto);
+            ps.setString(6, CIF);
+            ps.setInt(7, id_trabajadorModificar);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -72,19 +76,26 @@ public static ArrayList<Trabajador> trabajadores=new ArrayList<>();
 
 
     //Insertar trabajador
-    public void insertarTrabajador(int id_trabajador,String email,String nombre, String telefono, String cargo,Boolean persona_contacto, String CIF){
-        Trabajador nuevoTrabajador= new Trabajador(id_trabajador, email, nombre, telefono, cargo, persona_contacto, CIF);
-        String scriptIntTrabajador="INSERT INTO trabajador(id_trabajador,email,nombre,telefono,cargo,persona_contacto,CIF) VALUES(?,?,?,?,?,?)";
+    public static void insertarTrabajador(String email, String nombre, String telefono, String cargo, Boolean persona_contacto, String CIF, PanelConsultaTrabajadorTutor panel){
+        String scriptIntTrabajador="INSERT INTO trabajador(email,nombre,telefono,cargo,persona_contacto,CIF) VALUES(?,?,?,?,?,?)";
         try {
-                PreparedStatement statement = ControladorConexion.miConexion.prepareStatement(scriptIntTrabajador);
-            statement.setInt(1,id_trabajador);
-            statement.setString(2,email);
-            statement.setString(3,nombre);
-            statement.setString(4,telefono);
-            statement.setString(5,cargo);
-            statement.setBoolean(6,persona_contacto);
-            statement.setString(7, CIF);
+                PreparedStatement statement = ControladorConexion.miConexion.prepareStatement(scriptIntTrabajador,Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1,email);
+            statement.setString(2,nombre);
+            statement.setString(3,telefono);
+            statement.setString(4,cargo);
+            statement.setBoolean(5,persona_contacto);
+            statement.setString(6, CIF);
             statement.executeUpdate();
+
+            ResultSet rs = statement.getGeneratedKeys();
+            if (rs.next()){
+                int id_trabajador = rs.getInt(1);
+                Trabajador nuevoTrabajador= new Trabajador(id_trabajador, email, nombre, telefono, cargo, persona_contacto, CIF);
+                trabajadores.add(nuevoTrabajador);
+                panel.comboTrabajador.addItem(nuevoTrabajador);
+            }
+            rs.close();
             statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -113,5 +124,19 @@ public static ArrayList<Trabajador> trabajadores=new ArrayList<>();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static int siguienteValor() throws SQLException {
+        int id = 0;
+        Statement st = ControladorConexion.miConexion.createStatement();
+        ResultSet rs = st.executeQuery("SELECT last_value FROM public.trabajador_id_trabajador_seq");
+
+        while (rs.next()){
+            id = rs.getInt(1);
+        }
+
+        rs.close();
+        st.close();
+        return id;
     }
 }
