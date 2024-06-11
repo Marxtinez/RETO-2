@@ -14,8 +14,10 @@ import java.util.ArrayList;
 public class ControladorConsultaEmpresaPorCIF {
     public static ArrayList<EmpresaTutorTrabajador> resultados;
 
-    public static void cargaConsultaEmpresaC1(String CIF) {
-        resultados.clear();
+    public static void cargaConsultaEmpresaC1(String cif) {
+        if (resultados != null){
+            resultados.clear();
+        }
 
         String consultaSQL = "SELECT \n" +
                 "    e.cif AS CIF,\n" +
@@ -46,12 +48,12 @@ public class ControladorConsultaEmpresaPorCIF {
                 "LEFT JOIN \n" +
                 "    trabajador t ON e.cif = t.cif\n" +
                 "WHERE \n" +
-                "    e.cif = ?;";
-        PreparedStatement ps = null;
+                "    e.cif = ? AND t.persona_contacto = TRUE;";
+
 
         try {
-            ps = ControladorConexion.miConexion.prepareStatement(consultaSQL);
-            ps.setString(1, CIF);
+            PreparedStatement ps = ControladorConexion.miConexion.prepareStatement(consultaSQL);
+            ps.setString(1, cif);
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
@@ -78,7 +80,7 @@ public class ControladorConsultaEmpresaPorCIF {
                     trabajador.setCargo(rs.getString("Cargo_Trabajador"));
                     trabajador.setPersona_contacto(rs.getBoolean("Persona_Contacto"));
 
-                    EmpresaTutorTrabajador resultado = new EmpresaTutorTrabajador(empresa, tutor, trabajador);
+                    EmpresaTutorTrabajador resultado = new EmpresaTutorTrabajador(empresa,tutor,trabajador);
                     resultados.add(resultado);
                 }
             }

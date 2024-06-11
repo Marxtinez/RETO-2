@@ -1,7 +1,7 @@
 package Controller;
 
 public class ControladorConsultaEmpresasPorGrupoYCurso {
-    public static ArrayList<Empresa> consultaEmpresasPorCicloYCursos(String ciclo, String curso) {
+   /* public static ArrayList<Empresa> consultaEmpresasPorCicloYCursos(String ciclo, String curso) {
         ArrayList<Empresa> resultados = new ArrayList<>();
 
         String consultaSQL = "SELECT \n" +
@@ -147,5 +147,5 @@ public class ControladorConsultaEmpresasPorGrupoYCurso {
         }
 
         return resultados;
-    }
+    }*/
 }
