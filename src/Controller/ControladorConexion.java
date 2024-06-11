@@ -10,7 +10,7 @@ import java.sql.Connection;
  */
 
 public class ControladorConexion {
-    public static String url = "jdbc:postgresql://localhost:5432/DBRETO";
+    public static String url = "jdbc:postgresql://192.168.109.1:5432/DBRETO";
     public static String user = "postgres";
     public static String password = "Virtual01";
     public static Connection miConexion = DBConnection.getConnection(url, user, password);

@@ -6,15 +6,15 @@ import java.util.ArrayList;
 import java.sql.*;
 
 public class ControladorConsultaEmpresaTecnologia {
-    public static ArrayList<EmpresaTecnologias>resultados;
+    public static ArrayList<EmpresaTecnologias>resultados = new ArrayList<>();
 
     public static void cargarConsultaEmpresaC7(String tecnologias){
         if (resultados !=null){
             resultados.clear();
         }
-    String scriptObtenerEmpresasPorTecnologias="SELECT e.nombre AS nombre_empresa, e.tecnologias AS tecnologias \" +\n" +
-            "                             \"FROM empresa e \" +\n" +
-            "                             \"WHERE e.tecnologias LIKE ?";
+    String scriptObtenerEmpresasPorTecnologias="SELECT e.nombre AS nombre_empresa, e.tecnologias AS tecnologias " +
+            "                             FROM empresa e" +
+            "                             WHERE e.tecnologias LIKE ?";
          try {
              PreparedStatement statement=ControladorConexion.miConexion.prepareStatement(scriptObtenerEmpresasPorTecnologias);
              statement.setString(1,tecnologias);
@@ -23,7 +23,7 @@ public class ControladorConsultaEmpresaTecnologia {
                     Empresa empresa=new Empresa();
                     empresa.setNombre(rs.getString("nombre_empresa"));
                     Empresa tecnologia= new Empresa();
-                    tecnologia.setTecnologias(rs.getString("tecnologia"));
+                    tecnologia.setTecnologias(rs.getString("tecnologias"));
                     EmpresaTecnologias resultado=new EmpresaTecnologias(empresa,tecnologia);
                     resultados.add(resultado);
                 }
@@ -33,13 +33,14 @@ public class ControladorConsultaEmpresaTecnologia {
         throw new RuntimeException(e);
          }
     }
-/*
+        /*
     public static void main(String[] args) {
         cargarConsultaEmpresaC7("AgriTech, IoT");
         for (EmpresaTecnologias resultado : resultados) {
             System.out.println("Nombre de la Empresa: " + resultado.getEmpresa().getNombre());
             System.out.println("Tecnologías: " + resultado.getEmpresa().getTecnologias());
         }
-    }
-    */
+         */
+
+
 }
