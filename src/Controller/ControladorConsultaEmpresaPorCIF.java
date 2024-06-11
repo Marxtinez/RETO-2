@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 //Consulta C1
 public class ControladorConsultaEmpresaPorCIF {
-    public static ArrayList<EmpresaTutorTrabajador> resultados;
+    public static ArrayList<EmpresaTutorTrabajador> resultados = new ArrayList<>();
 
     public static void cargaConsultaEmpresaC1(String cif) {
         if (resultados != null){
@@ -89,14 +89,15 @@ public class ControladorConsultaEmpresaPorCIF {
         }
 
     }
-
+    /*
     public static void main(String[] args) {
         cargaConsultaEmpresaC1("CIF001");
         for (EmpresaTutorTrabajador resultado : resultados) {
-            System.out.println(resultado.getEmpresa().toString());
+            System.out.println(resultado.getEmpresa().toString()+ resultado.getEmpresa().getCIF()+ resultado.getEmpresa().getDireccion()+ resultado.getEmpresa().getNombre());
             System.out.println(resultado.getTrabajador().toString());
             System.out.println(resultado.getTutorFCT().toString());
         }
 
-    }
+    }*/
+
 }
