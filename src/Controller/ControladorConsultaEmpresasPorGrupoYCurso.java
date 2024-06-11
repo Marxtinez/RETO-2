@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import Model.EmpresaFCT;
 import java.sql.SQLException;
 
-public class ControladorConsultaEmpresasPorGrupoYCursoC2 {
+public class ControladorConsultaEmpresasPorGrupoYCurso {
     public static ArrayList<EmpresaFCT> resultados = new ArrayList<>();
 
-    public static void cargaConsultaCicloEmpresas(String ciclo, String curso) {
+    public static void cargaConsultaCicloEmpresasC2(String ciclo, String curso) {
         if (resultados != null) {
             resultados.clear();
         }
