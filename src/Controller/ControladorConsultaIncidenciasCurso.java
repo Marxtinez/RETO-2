@@ -1,9 +1,12 @@
 package Controller;
 
+
 import Model.Grupo;
 import Model.Incidencia;
 import Model.IncidenciaGrupo;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class ControladorConsultaIncidenciasCurso {
@@ -14,7 +17,7 @@ public class ControladorConsultaIncidenciasCurso {
             resultados.clear();
         }
 
-        String scriptObtenerIncidenciasPorCurso = "SELECT i.id_incidencia, i.descripcion, i.fecha, i.CIF, gre.id_grupo, gre.num_alumnos, gre.id_ciclo " +
+        String scriptObtenerIncidenciasPorCurso = "SELECT i.id_incidencia, i.descripcion, i.fecha, i.CIF, g.id_grupo, g.num_alumnos, g.id_ciclo " +
                 "FROM incidencia i " +
                 "JOIN empresa e ON i.CIF = e.CIF " +
                 "JOIN grupo_realiza_empresa gre ON e.CIF = gre.CIF " +
@@ -24,8 +27,13 @@ public class ControladorConsultaIncidenciasCurso {
 
         try {
             PreparedStatement statement = ControladorConexion.miConexion.prepareStatement(scriptObtenerIncidenciasPorCurso);
-            statement.setString(1, fechaInicio);
-            statement.setString(2, fechaFin);
+
+            // Convertir las fechas de cadena a java.sql.Date usando el método convertToDate
+            Date sqlFechaInicio = convertToDate(fechaInicio);
+            Date sqlFechaFin = convertToDate(fechaFin);
+
+            statement.setDate(1, sqlFechaInicio);
+            statement.setDate(2, sqlFechaFin);
             statement.setString(3, curso);
 
             try (ResultSet rs = statement.executeQuery()) {
@@ -47,7 +55,18 @@ public class ControladorConsultaIncidenciasCurso {
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+    }
+
+    public static Date convertToDate(String dateString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-dd-MM");
+        LocalDate localDate = LocalDate.parse(dateString, formatter);
+        return Date.valueOf(localDate);
+    }
+
+    public static void main(String[] args) {
+        cargarConsultaIncidenciasPorCurso("2023-01-06", "2024-01-01", "2023-2024");
+        System.out.println(resultados.toString());
     }
 }

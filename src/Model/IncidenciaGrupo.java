@@ -24,5 +24,13 @@ public class IncidenciaGrupo {
     public void setGrupo(Grupo grupo) {
         this.grupo = grupo;
     }
+
+    @Override
+    public String toString() {
+        return "IncidenciaGrupo{" +
+                "incidencia=" + incidencia +
+                ", grupo=" + grupo +
+                '}';
+    }
 }
 

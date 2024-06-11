@@ -35,4 +35,9 @@ public class Grupo {
     public void setId_ciclo(String id_ciclo) {
         this.id_ciclo = id_ciclo;
     }
+
+    @Override
+    public String toString() {
+        return "Grupo{id_grupo='" + id_grupo + "', num_alumnos=" + num_alumnos + ", id_ciclo='" + id_ciclo + "'}";
+    }
 }

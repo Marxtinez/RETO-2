@@ -46,5 +46,11 @@ public class ControladorConsultaHistorialContactos {
             throw new RuntimeException(e);
         }
     }
+
+    public static void main(String[] args) {
+        cargarHistorialContactos("CIF001");
+        System.out.println(resultados.toString());
+
+    }
 }
 
