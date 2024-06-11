@@ -19,12 +19,11 @@ public class MainFrame extends JFrame {
 }
 
 class MainPanel extends JPanel {
-    JButton btn_profesor, btn_tutor, btn_configuracion;
+    JButton btn_tutor, btn_configuracion;
     JPanel master = new JPanel();
     ControladorPanelPrincipal panelPrincipal;
     PanelConfiguracion panelConfiguracion = new PanelConfiguracion();
     PanelInicioSesionTutor panelInicioSesionTutor = new PanelInicioSesionTutor();
-    PanelInicioSesionProf panelInicioSesionProf = new PanelInicioSesionProf();
     public MainPanel() throws SQLException {
         JPanel main = new JPanel();
         main.setLayout(new BoxLayout(main,BoxLayout.X_AXIS));
@@ -32,13 +31,10 @@ class MainPanel extends JPanel {
 
         JPanel center = new JPanel();
         center.setLayout(new BoxLayout(center,BoxLayout.Y_AXIS));
-        btn_profesor = new JButton(idioma.getProperty("inicioSesionProfesor"));
         btn_tutor = new JButton(idioma.getProperty("inicioSesionTutor"));
         btn_configuracion = new JButton(idioma.getProperty("configuracion"));
 
         Dimension dimensionBtn = new Dimension(300,25);
-        btn_profesor.setPreferredSize(dimensionBtn);
-        btn_profesor.setMaximumSize(dimensionBtn);
         btn_tutor.setPreferredSize(dimensionBtn);
         btn_tutor.setMaximumSize(dimensionBtn);
         btn_configuracion.setPreferredSize(dimensionBtn);
@@ -48,14 +44,12 @@ class MainPanel extends JPanel {
 
         btn_configuracion.addActionListener(e-> panelPrincipal.nuevoPanelActivo(panelConfiguracion));
         btn_tutor.addActionListener(e-> panelPrincipal.nuevoPanelActivo(panelInicioSesionTutor));
-        btn_profesor.addActionListener(e-> panelPrincipal.nuevoPanelActivo(panelInicioSesionProf));
 
-        center.add(Box.createVerticalStrut(50));
-        center.add(btn_profesor);
-        center.add(Box.createVerticalStrut(50));
+        center.add(Box.createVerticalStrut(90));
         center.add(btn_tutor);
         center.add(Box.createVerticalStrut(50));
         center.add(btn_configuracion);
+        center.add(Box.createVerticalStrut(90));
 
         main.add(Box.createHorizontalStrut(500));
         main.add(center);

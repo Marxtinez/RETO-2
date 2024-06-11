@@ -2,6 +2,8 @@ package Controller;
 
 import Model.Incidencia;
 import View.PanelConsultaIncidenciaTutor;
+import View.PanelModificarEmpresa;
+import View.PanelModificarIncidencia;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ public class ControladorIncidencia {
         st.close();
     }
 
-    public static void modificaIncidencia(int idIncidenciaModificar, String descripcion, String fecha, String CIF) throws SQLException {
+    public static void modificaIncidencia(int idIncidenciaModificar, String descripcion, String fecha, String CIF, PanelConsultaIncidenciaTutor panel) throws SQLException {
         cargaContenidoIncidencias();
 
         String sql = "UPDATE INCIDENCIA SET descripcion = ?, fecha = ?, CIF = ? WHERE id_incidencia = ?";
@@ -39,6 +41,8 @@ public class ControladorIncidencia {
         for (int i = 0; i < incidencias.size(); i++) {
             if (incidencias.get(i).getId_incidencia() == idIncidenciaModificar) {
                 incidencias.set(i, incidenciaMod);
+                panel.comboIncidencia.removeItemAt(i);
+                panel.comboIncidencia.addItem(incidenciaMod);
                 break;
             }
         }

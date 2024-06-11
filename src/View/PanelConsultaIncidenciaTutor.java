@@ -18,6 +18,7 @@ public class PanelConsultaIncidenciaTutor extends JPanel {
     JLabel lblIdIncidencia, lblCif, lblDescripcion, lblFecha;
     JButton btnAgregar,btnEliminar,btnModificar,btnAtras;
     PanelAgregarIncidencia panelAgregarIncidencia = new PanelAgregarIncidencia();
+    PanelModificarIncidencia panelModificarIncidencia = new PanelModificarIncidencia();
 
     public PanelConsultaIncidenciaTutor() throws SQLException {
         Idioma idioma = new Idioma(Idioma.spanish);
@@ -80,13 +81,13 @@ public class PanelConsultaIncidenciaTutor extends JPanel {
                 throw new RuntimeException(ex);
             }
         });
-        /*btnModificar.addActionListener(e->{
-            panelModificarTutor.txtIdTutor.setText(txtIdIncidencia.getText());
-            panelModificarTutor.txtEmail.setText(txtFecha.getText());
-            panelModificarTutor.txtNombre.setText(txtCif.getText());
-            panelModificarTutor.txtTelefono.setText(txtDescripcion.getText());
-            ControladorPanelPrincipal.nuevoPanelActivo(panelModificarTutor);
-        });*/
+        btnModificar.addActionListener(e->{
+            panelModificarIncidencia.txtCif.setText(txtCif.getText());
+            panelModificarIncidencia.txtIdIncidencia.setText(txtIdIncidencia.getText());
+            panelModificarIncidencia.txtDescripcion.setText(txtDescripcion.getText());
+            panelModificarIncidencia.txtFecha.setText(txtFecha.getText());
+            ControladorPanelPrincipal.nuevoPanelActivo(panelModificarIncidencia);
+        });
 
         panelBotones.add(Box.createHorizontalStrut(50));
         panelBotones.add(btnAgregar);
