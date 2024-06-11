@@ -34,4 +34,13 @@ public class EmpresaTutorTrabajador {
     public void setTrabajador(Trabajador trabajador) {
         this.trabajador = trabajador;
     }
+
+    @Override
+    public String toString() {
+        return "EmpresaTutorTrabajador{" +
+                "empresa=" + empresa +
+                ", tutorFCT=" + tutorFCT +
+                ", trabajador=" + trabajador +
+                '}';
+    }
 }
