@@ -1,33 +1,44 @@
 package Controller;
 import Model.Empresa;
+import Model.EmpresaTecnologias;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.sql.*;
 
 public class ControladorConsultaEmpresaTecnologia {
-    //Obtener empresas por tecnologias
-    public static List<Empresa> obtenerEmpresasPorTecnologia(String tecnologias) throws SQLException{
-    List<Empresa> empresaPorTecnologia=new ArrayList<>();
-    String scriptObtenerEmpresasPorTecnologias="SELECT * FROM empresa WHERE tecnologias = ? ";
-    try (PreparedStatement statement=ControladorConexion.miConexion.prepareStatement(scriptObtenerEmpresasPorTecnologias)){
-        statement.setString(1,tecnologias);
-        ResultSet rs=statement.executeQuery();
-        while (rs.next()){
-            Empresa listadoEmpresas=new Empresa(
-                    rs.getString("CIF"),
-                    rs.getString("nombre"),
-                    rs.getString("direccion"),
-                    rs.getString("tecnologias"),
-                    rs.getString("sector"),
-                    rs.getString("telefonos"),
-                    rs.getInt("num_empleados"),
-                    rs.getInt("ult_anio_colab")
-                    );
+    public static ArrayList<EmpresaTecnologias>resultados;
+
+    public static void cargarConsultaEmpresaC7(String tecnologias){
+        if (resultados !=null){
+            resultados.clear();
         }
-    }catch (SQLException e){
-        e.printStackTrace();
+    String scriptObtenerEmpresasPorTecnologias="SELECT e.nombre AS nombre_empresa, e.tecnologias AS tecnologias \" +\n" +
+            "                             \"FROM empresa e \" +\n" +
+            "                             \"WHERE e.tecnologias LIKE ?";
+         try {
+             PreparedStatement statement=ControladorConexion.miConexion.prepareStatement(scriptObtenerEmpresasPorTecnologias);
+             statement.setString(1,tecnologias);
+            try(ResultSet rs=statement.executeQuery()){
+                while (rs.next()){
+                    Empresa empresa=new Empresa();
+                    empresa.setNombre(rs.getString("nombre_empresa"));
+                    Empresa tecnologia= new Empresa();
+                    tecnologia.setTecnologias(rs.getString("tecnologia"));
+                    EmpresaTecnologias resultado=new EmpresaTecnologias(empresa,tecnologia);
+                    resultados.add(resultado);
+                }
+            }
+
+         }catch (SQLException e){
+        throw new RuntimeException(e);
+         }
     }
-    return empresaPorTecnologia;
-    }
+/*
+    public static void main(String[] args) {
+        cargarConsultaEmpresaC7("AgriTech, IoT");
+        for (EmpresaTecnologias resultado : resultados) {
+            System.out.println("Nombre de la Empresa: " + resultado.getEmpresa().getNombre());
+            System.out.println("Tecnologías: " + resultado.getEmpresa().getTecnologias());
+        }
+    }*/
 }
