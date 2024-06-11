@@ -1,21 +1,18 @@
 package Model;
 
-public class EmpresaFCT {
-
+public class TutorFCTEmpresaFCT {
     private Empresa empresa;
+    private TutorFCT tutor;
     private int num_practicas; //CANTIDAD DE GRUPOS QUE HAN HECHO PRÁCTICAS.
     private int num_total_alumnos_FCT; //CANTIDAD DE ALUMNOS QUE HAN HECHO PRÁCTCAS EN ESA EMPRESA.
 
-
-    public EmpresaFCT(Empresa empresa, int num_practicas, int num_total_alumnos_FCT) {
+    public TutorFCTEmpresaFCT(Empresa empresa, TutorFCT tutor, int num_practicas, int num_total_alumnos_FCT) {
         this.empresa = empresa;
-        this.num_practicas  =num_practicas;
+        this.tutor = tutor;
+        this.num_practicas = num_practicas;
         this.num_total_alumnos_FCT = num_total_alumnos_FCT;
     }
 
-    public EmpresaFCT() {
-
-    }
 
     public Empresa getEmpresa() {
         return empresa;
@@ -25,6 +22,13 @@ public class EmpresaFCT {
         this.empresa = empresa;
     }
 
+    public TutorFCT getTutor() {
+        return tutor;
+    }
+
+    public void setTutor(TutorFCT tutor) {
+        this.tutor = tutor;
+    }
 
     public int getNum_practicas() {
         return num_practicas;
@@ -44,8 +48,9 @@ public class EmpresaFCT {
 
     @Override
     public String toString() {
-        return "EmpresaFCT{" +
+        return "TutorFCTEmpresaFCT{" +
                 "empresa=" + empresa +
+                ", tutor=" + tutor +
                 ", num_practicas=" + num_practicas +
                 ", num_total_alumnos_FCT=" + num_total_alumnos_FCT +
                 '}';
