@@ -42,6 +42,7 @@ public class ControladorConsultaHistorialContactos {
                 }
             }
         } catch (SQLException e) {
+
             throw new RuntimeException(e);
         }
     }
