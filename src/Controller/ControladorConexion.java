@@ -1,5 +1,7 @@
 package Controller;
 
+import View.PanelOpcionesTutor;
+
 import java.sql.Connection;
 /*
 * La conexión standard es:

@@ -2,22 +2,23 @@ package View;
 
 import Controller.ControladorEmpresa;
 import Controller.ControladorPanelPrincipal;
-import Model.Empresa;
 import Model.Idioma;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class PanelModificarEmpresa extends JPanel {
     JTextField txtCif,txtNombre,txtDireccion,txtTecnologias,txtSector,txtTelefono,txtEmpleados,txtUltColab;
-    JButton btnAtras,btnAgregar;
-    JLabel lblCif,lblNombre,lblDireccion,lblTecnologias,lblSector,lblTelefono,lblEmpleados,lblUltColab;
+    JButton btnAtras, btnMod;
+    JLabel lblCif,lblNombre,lblDireccion,lblTecnologias,lblSector,lblTelefono,lblEmpleados,lblUltColab,lblResultado;
     public PanelModificarEmpresa() {
         Idioma idioma = new Idioma(Idioma.spanish);
 
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         btnAtras = new JButton(idioma.getProperty("atras"));
-        btnAgregar = new JButton(idioma.getProperty("modificar"));
+        btnMod = new JButton(idioma.getProperty("modificar"));
 
         lblCif = new JLabel(idioma.getProperty("cif"));
         lblDireccion = new JLabel(idioma.getProperty("direccion"));
@@ -49,17 +50,28 @@ public class PanelModificarEmpresa extends JPanel {
         txtNombre = new JTextField();
         txtUltColab = new JTextField();
 
+        lblResultado = new JLabel();
+        lblResultado.setAlignmentX(CENTER_ALIGNMENT);
+
         btnAtras.addActionListener(e-> ControladorPanelPrincipal.panelAntiguo());
-        btnAgregar.addActionListener(e->{
+        btnMod.addActionListener(e->{
             try {
                 ControladorEmpresa.modificaEmpresa(PanelOpcionesTutor.panelConsultaEmpresaTutor.cifMod,txtCif.getText(),txtNombre.getText(),txtDireccion.getText(),txtTecnologias.getText(),txtSector.getText(),txtTelefono.getText(),Integer.valueOf(txtEmpleados.getText()),Integer.valueOf(txtUltColab.getText()),PanelOpcionesTutor.panelConsultaEmpresaTutor);
-                ControladorPanelPrincipal.panelAntiguo();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
+            lblResultado.setText("Se ha modificado la empresa correctamente");
+            Timer timer = new Timer(2500, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    lblResultado.setText("");
+                }
+            });
+            timer.setRepeats(false);
+            timer.start();
         });
 
-        panelBotones.add(btnAgregar);
+        panelBotones.add(btnMod);
         panelBotones.add(Box.createHorizontalStrut(10));
         panelBotones.add(btnAtras);
 
@@ -92,7 +104,9 @@ public class PanelModificarEmpresa extends JPanel {
         panelForm.add(panelDer);
 
         add(panelForm);
-        add(Box.createVerticalStrut(20));
+        add(Box.createVerticalStrut(10));
+        add(lblResultado);
+        add(Box.createVerticalStrut(10));
         add(panelBotones);
     }
 }

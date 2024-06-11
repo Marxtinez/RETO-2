@@ -11,11 +11,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-public class PanelConsultaFCTTutor extends JPanel {
+public class PanelConsultaFCTTutor extends JPanel{
     public JComboBox<FCT> comboFCT = new JComboBox<>();
     JTextField txtGrupo,txtCif,txtCurso,txtAlumnos;
     JLabel lblGrupo,lblCif,lblCurso,lblAlumno;
     JButton btnAgregar,btnEliminar,btnModificar,btnAtras;
+    PanelAgregarFCT panelAgregarFCT = new PanelAgregarFCT();
+    PanelModificarFCT panelModificarFCT = new PanelModificarFCT();
+    public String cifMod,cursoMod,grupoMod;
 
     public PanelConsultaFCTTutor() throws SQLException {
         Idioma idioma = new Idioma(Idioma.spanish);
@@ -67,6 +70,26 @@ public class PanelConsultaFCTTutor extends JPanel {
         });
 
         btnAtras.addActionListener(e-> ControladorPanelPrincipal.panelAntiguo());
+        btnAgregar.addActionListener(e-> ControladorPanelPrincipal.nuevoPanelActivo(panelAgregarFCT));
+        btnEliminar.addActionListener(e->{
+            try {
+                FCT fctSeleccioanda = (FCT) comboFCT.getSelectedItem();
+                ControladorFCT.eliminaFCT(fctSeleccioanda.getId_grupo(),fctSeleccioanda.getCIF(),fctSeleccioanda.getCurso());
+                comboFCT.removeItem(fctSeleccioanda);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        btnModificar.addActionListener(e->{
+            panelModificarFCT.txtAlumnos.setText(txtAlumnos.getText());
+            panelModificarFCT.txtCif.setText(txtCif.getText());
+            panelModificarFCT.txtCurso.setText(txtCurso.getText());
+            panelModificarFCT.txtGrupo.setText(txtGrupo.getText());
+            cifMod = txtCif.getText();
+            grupoMod = txtGrupo.getText();
+            cursoMod = txtCurso.getText();
+            ControladorPanelPrincipal.nuevoPanelActivo(panelModificarFCT);
+        });
 
         panelBotones.add(btnAgregar);
         panelBotones.add(Box.createHorizontalStrut(10));

@@ -64,5 +64,12 @@ public class PanelConfiguracion extends JPanel {
         add(btnAtras);
 
         btnAtras.addActionListener(e->ControladorPanelPrincipal.panelAntiguo());
+        btnAcceder.addActionListener(e-> {
+            try {
+                ControladorConexion.nuevaConexion(txtUrl.getText(),txtNombre.getText(),txtPassword.getText());
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        });
     }
 }

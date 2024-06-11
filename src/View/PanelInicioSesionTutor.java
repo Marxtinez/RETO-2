@@ -1,17 +1,20 @@
 package View;
 
+import Controller.ControladorEmpresa;
 import Controller.ControladorInicoSesion;
 import Controller.ControladorPanelPrincipal;
+import Controller.ControladorTutorFCT;
 import Model.Idioma;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 
 public class PanelInicioSesionTutor extends JPanel {
     JLabel lblNombre,lblPassword;
     JButton btnAtras,btnEntrar;
     public JTextField txtNombre,txtPassword;
-    public PanelInicioSesionTutor() {
+    public PanelInicioSesionTutor() throws SQLException {
         Idioma idioma = new Idioma(Idioma.spanish);
 
         lblNombre = new JLabel(idioma.getProperty("usuario"));
@@ -55,6 +58,8 @@ public class PanelInicioSesionTutor extends JPanel {
         add(panelFormX);
         add(panelBotones);
 
-        btnEntrar.addActionListener(e->ControladorInicoSesion.cambioPanelTutor(this));
+        btnEntrar.addActionListener(e-> {
+            ControladorInicoSesion.cambioPanelTutor(this);
+        });
     }
 }

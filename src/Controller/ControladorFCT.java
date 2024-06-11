@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.FCT;
+import View.PanelConsultaFCTTutor;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,13 +24,15 @@ public class ControladorFCT {
         st.close();
     }
 
-    public static void modificaFCT(String idGrupoModificar, String CIFModificar, String cursoModificar, String id_grupo, String CIF, String curso, int num_alumnos) throws SQLException {
+    public static void modificaFCT(String idGrupoModificar, String CIFModificar, String cursoModificar, String id_grupo, String CIF, String curso, int num_alumnos,PanelConsultaFCTTutor panel) throws SQLException {
         cargaContenidoFCTs();
         FCT fctMod = new FCT(id_grupo, CIF, curso, num_alumnos);
         for (int i = 0; i < fcts.size(); i++) {
             FCT currentFCT = fcts.get(i);
             if (currentFCT.getId_grupo().equals(idGrupoModificar) && currentFCT.getCIF().equals(CIFModificar) && currentFCT.getCurso().equals(cursoModificar)) {
                 fcts.set(i, fctMod);
+                panel.comboFCT.removeItemAt(i);
+                panel.comboFCT.addItem(fctMod);
                 break;
             }
         }
@@ -45,7 +48,7 @@ public class ControladorFCT {
         ps.executeUpdate();
         ps.close();
     }
-    public static void agregaFCT(String id_grupo, String CIF, String curso, int num_alumnos) {
+    public static void agregaFCT(String id_grupo, String CIF, String curso, int num_alumnos, PanelConsultaFCTTutor panel) {
         FCT nuevoFCT = new FCT(id_grupo, CIF, curso, num_alumnos);
         String sql = "INSERT INTO GRUPO_REALIZA_EMPRESA (id_grupo, CIF, curso, cant_alumnos) VALUES (?, ?, ?, ?)";
         try {
@@ -60,6 +63,7 @@ public class ControladorFCT {
             throw new RuntimeException(e);
         }
         fcts.add(nuevoFCT);
+        panel.comboFCT.addItem(nuevoFCT);
     }
 
     public static void eliminaFCT(String id_grupo, String CIF, String curso) throws SQLException {

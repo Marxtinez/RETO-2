@@ -1,6 +1,8 @@
 package Controller;
 
 import Model.TutorFCT;
+import View.PanelAgregarTutor;
+import View.PanelConsultaTutoresTutor;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,12 +25,14 @@ public class ControladorTutorFCT {
         st.close();
     }
 
-    public static void modificaTutor(int idModificar, String email, String nombre, String telefono) throws SQLException {
+    public static void modificaTutor(int idModificar, String email, String nombre, String telefono,PanelConsultaTutoresTutor panel) throws SQLException {
         cargaContenidoTutores();
         TutorFCT tutorMod = new TutorFCT(idModificar, email, nombre, telefono);
         for (int i = 0; i < tutores.size(); i++) {
             if (tutores.get(i).getId_tutor() == idModificar) {
                 tutores.set(i, tutorMod);
+                panel.comboTutores.removeItemAt(i);
+                panel.comboTutores.addItem(tutorMod);
                 break;
             }
         }
@@ -42,7 +46,7 @@ public class ControladorTutorFCT {
         ps.close();
     }
 
-    public static void agregaTutor(String email, String nombre, String telefono) {
+    public static void agregaTutor(String email, String nombre, String telefono, PanelConsultaTutoresTutor panel) {
         String sql = "INSERT INTO TUTORFCT (email, nombre, telefono) VALUES (?, ?, ?)";
         try {
             PreparedStatement ps = ControladorConexion.miConexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -56,6 +60,7 @@ public class ControladorTutorFCT {
                 int id_tutor = rs.getInt(1);
                 TutorFCT nuevoTutor = new TutorFCT(id_tutor, email, nombre, telefono);
                 tutores.add(nuevoTutor);
+                panel.comboTutores.addItem(nuevoTutor);
             }
             rs.close();
             ps.close();
@@ -76,6 +81,20 @@ public class ControladorTutorFCT {
         ps.setInt(1, idEliminar);
         ps.executeUpdate();
         ps.close();
+    }
+
+    public static int siguienteValor() throws SQLException {
+        int id = 0;
+        Statement st = ControladorConexion.miConexion.createStatement();
+        ResultSet rs = st.executeQuery("SELECT last_value FROM public.tutorfct_id_tutor_seq");
+
+        while (rs.next()){
+            id = rs.getInt(1);
+        }
+
+        rs.close();
+        st.close();
+        return id;
     }
     /*
     public static void main(String[] args) throws SQLException {

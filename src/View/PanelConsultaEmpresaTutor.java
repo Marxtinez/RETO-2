@@ -16,7 +16,7 @@ public class PanelConsultaEmpresaTutor extends JPanel {
     JButton btnAtras,btnModificar,btnAgregar,btnEliminar;
     JLabel lblCif,lblNombre,lblDireccion,lblTecnologias,lblSector,lblTelefono,lblEmpleados,lblUltColab;
     PanelAgregarEmpresa panelAgregarEmpresa = new PanelAgregarEmpresa();
-    PanelModificarEmpresa panelModificarEmpresa;
+    PanelModificarEmpresa panelModificarEmpresa = new PanelModificarEmpresa();
     public String cifMod;
 
     public PanelConsultaEmpresaTutor() throws SQLException {
@@ -99,9 +99,8 @@ public class PanelConsultaEmpresaTutor extends JPanel {
             }
         });
         btnAgregar.addActionListener(e->ControladorPanelPrincipal.nuevoPanelActivo(panelAgregarEmpresa));
-
-        panelModificarEmpresa = new PanelModificarEmpresa();
-        btnModificar.addActionListener(e->{panelModificarEmpresa.txtCif.setText(txtCif.getText());
+        btnModificar.addActionListener(e->{
+            panelModificarEmpresa.txtCif.setText(txtCif.getText());
             panelModificarEmpresa.txtDireccion.setText(txtDireccion.getText());
             panelModificarEmpresa.txtEmpleados.setText(txtEmpleados.getText());
             panelModificarEmpresa.txtNombre.setText(txtNombre.getText());
@@ -110,7 +109,8 @@ public class PanelConsultaEmpresaTutor extends JPanel {
             panelModificarEmpresa.txtSector.setText(txtSector.getText());
             panelModificarEmpresa.txtUltColab.setText(txtUltColab.getText());
             cifMod = txtCif.getText();
-            ControladorPanelPrincipal.nuevoPanelActivo(panelModificarEmpresa);});
+            ControladorPanelPrincipal.nuevoPanelActivo(panelModificarEmpresa);
+        });
 
         panelBotones.add(btnAgregar);
         panelBotones.add(Box.createHorizontalStrut(10));

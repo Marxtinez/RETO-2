@@ -5,9 +5,10 @@ import Model.Idioma;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 
 public class MainFrame extends JFrame {
-    public MainFrame(){
+    public MainFrame() throws SQLException {
         this.setTitle("Gestor FCT");
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setBounds(600,200,650,350);
@@ -23,7 +24,7 @@ class MainPanel extends JPanel {
     ControladorPanelPrincipal panelPrincipal;
     PanelConfiguracion panelConfiguracion = new PanelConfiguracion();
     PanelInicioSesionTutor panelInicioSesionTutor = new PanelInicioSesionTutor();
-    public MainPanel() {
+    public MainPanel() throws SQLException {
         JPanel main = new JPanel();
         main.setLayout(new BoxLayout(main,BoxLayout.X_AXIS));
         Idioma idioma = new Idioma(Idioma.spanish);

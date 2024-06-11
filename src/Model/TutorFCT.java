@@ -51,11 +51,6 @@ public class TutorFCT {
 
     @Override
     public String toString() {
-        return "TutorFCT{" +
-                "id_tutor=" + id_tutor +
-                ", email='" + email + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", telefono='" + telefono + '\'' +
-                '}';
+        return nombre;
     }
 }
