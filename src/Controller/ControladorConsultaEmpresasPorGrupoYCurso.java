@@ -1,5 +1,13 @@
 package Controller;
 
+import Model.Empresa;
+import Model.TutorFCT;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
 public class ControladorConsultaEmpresasPorGrupoYCurso {
    /* public static ArrayList<Empresa> consultaEmpresasPorCicloYCursos(String ciclo, String curso) {
         ArrayList<Empresa> resultados = new ArrayList<>();
