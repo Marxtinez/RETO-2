@@ -7,21 +7,26 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ControladorConsultaIncidenciasCurso {
-    public static ArrayList<IncidenciaGrupo>resultados = new ArrayList<>();
-    public static void cargarConsultaIncidenciasPorCurso(String fechaInicio, String fechaFin) {
+    public static ArrayList<IncidenciaGrupo> resultados = new ArrayList<>();
+
+    public static void cargarConsultaIncidenciasPorCurso(String fechaInicio, String fechaFin, String curso) {
         if (resultados != null) {
             resultados.clear();
         }
 
-        String scriptObtenerIncidenciasPorCurso = "SELECT i.id_incidencia, i.descripcion, i.fecha, i.CIF, g.id_grupo, g.num_alumnos, g.id_ciclo " +
+        String scriptObtenerIncidenciasPorCurso = "SELECT i.id_incidencia, i.descripcion, i.fecha, i.CIF, gre.id_grupo, gre.num_alumnos, gre.id_ciclo " +
                 "FROM incidencia i " +
-                "JOIN grupo g ON i.id_grupo = g.id_grupo " +
-                "WHERE i.fecha BETWEEN ? AND ?";
+                "JOIN empresa e ON i.CIF = e.CIF " +
+                "JOIN grupo_realiza_empresa gre ON e.CIF = gre.CIF " +
+                "JOIN grupo g ON gre.id_grupo = g.id_grupo " +
+                "WHERE i.fecha BETWEEN ? AND ? " +
+                "AND gre.curso = ?";
 
         try {
             PreparedStatement statement = ControladorConexion.miConexion.prepareStatement(scriptObtenerIncidenciasPorCurso);
             statement.setString(1, fechaInicio);
             statement.setString(2, fechaFin);
+            statement.setString(3, curso);
 
             try (ResultSet rs = statement.executeQuery()) {
                 while (rs.next()) {
