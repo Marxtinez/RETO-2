@@ -41,7 +41,6 @@ public class EmpresaFCT {
     public void setNum_total_alumnos_FCT(int num_total_alumnos_FCT) {
         this.num_total_alumnos_FCT = num_total_alumnos_FCT;
     }
-
     @Override
     public String toString() {
         return "EmpresaFCT{" +
