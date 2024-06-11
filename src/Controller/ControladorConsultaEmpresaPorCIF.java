@@ -8,14 +8,13 @@ import Model.TutorFCT;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 //Consulta C1
 public class ControladorConsultaEmpresaPorCIF {
-    static ArrayList<EmpresaTutorTrabajador> resultados;
+    public static ArrayList<EmpresaTutorTrabajador> resultados;
 
-    public static void cargaConsultaEmpresa(String CIF) throws SQLException {
+    public static void cargaConsultaEmpresaC1(String CIF) {
         resultados.clear();
 
         String consultaSQL = "SELECT \n" +
@@ -48,8 +47,10 @@ public class ControladorConsultaEmpresaPorCIF {
                 "    trabajador t ON e.cif = t.cif\n" +
                 "WHERE \n" +
                 "    e.cif = ?;";
-        PreparedStatement ps = ControladorConexion.miConexion.prepareStatement(consultaSQL);
+        PreparedStatement ps = null;
 
+        try {
+            ps = ControladorConexion.miConexion.prepareStatement(consultaSQL);
             ps.setString(1, CIF);
 
             try (ResultSet rs = ps.executeQuery()) {
@@ -81,19 +82,19 @@ public class ControladorConsultaEmpresaPorCIF {
                     resultados.add(resultado);
                 }
             }
-    }
-
-    public static void main(String[] args) {
-        try {
-            cargaConsultaEmpresa("CIF001");
-
-            for (EmpresaTutorTrabajador resultado : resultados) {
-                System.out.println(resultado.getEmpresa().toString());
-                System.out.println(resultado.getTrabajador().toString());
-                System.out.println(resultado.getTutorFCT().toString());
-            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+    }
+
+    public static void main(String[] args) {
+        cargaConsultaEmpresaC1("CIF001");
+        for (EmpresaTutorTrabajador resultado : resultados) {
+            System.out.println(resultado.getEmpresa().toString());
+            System.out.println(resultado.getTrabajador().toString());
+            System.out.println(resultado.getTutorFCT().toString());
+        }
+
     }
 }
