@@ -84,14 +84,4 @@ public class ControladorEmpresa {
         ps.executeUpdate();
         ps.close();
     }
-/*
-    public static void main(String[] args) throws SQLException {
-        cargaContenidoEmpresas();
-        System.out.println(empresas.toString());
-        //agregaEmpresa("prueba","prueba","prueba", "prueba", "prueba", "prueba", 1, 1);
-        //modificaEmpresa("prueba","pruebaMODIFICADA", "", "", "", "", "", 0, 0);
-        eliminaEmpresa("CIF010");
-    }*/
-
-
 }

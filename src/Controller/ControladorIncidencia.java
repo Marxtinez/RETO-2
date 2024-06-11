@@ -96,17 +96,5 @@ public class ControladorIncidencia {
         st.close();
         return id;
     }
-
-/*
-    public static void main(String[] args) throws SQLException {
-        cargaContenidoIncidencias();
-        System.out.println(incidencias.toString());
-        //agregaIncidencia("PRUEBA", "2024-06-08", "CIF001");
-        //modificaIncidencia(21, "Incidencia modificada", "2024-06-08", "CIF002");
-        //eliminaIncidencia(21);
-    }
-
- */
-
 }
 

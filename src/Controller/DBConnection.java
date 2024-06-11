@@ -35,5 +35,6 @@ public class DBConnection {
         }catch(java.sql.SQLException e){
             System.out.println("Connecting error: getConnection() " + e.getMessage());
         }
+
     }
 }

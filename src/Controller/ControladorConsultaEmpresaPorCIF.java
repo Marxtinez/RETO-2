@@ -87,17 +87,5 @@ public class ControladorConsultaEmpresaPorCIF {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
-    /*
-    public static void main(String[] args) {
-        cargaConsultaEmpresaC1("CIF001");
-        for (EmpresaTutorTrabajador resultado : resultados) {
-            System.out.println(resultado.getEmpresa().toString()+ resultado.getEmpresa().getCIF()+ resultado.getEmpresa().getDireccion()+ resultado.getEmpresa().getNombre());
-            System.out.println(resultado.getTrabajador().toString());
-            System.out.println(resultado.getTutorFCT().toString());
-        }
-
-    }*/
-
 }

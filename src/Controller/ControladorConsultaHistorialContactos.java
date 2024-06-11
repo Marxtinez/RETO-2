@@ -18,7 +18,7 @@ public class ControladorConsultaHistorialContactos {
                 "FROM empresa_contacta_tutor ect " +
                 "JOIN tutorfct t ON ect.id_tutor = t.id_tutor " +
                 "WHERE ect.CIF = ? " +
-                "ORDER BY ect,t.fecha DESC";
+                "ORDER BY ect.fecha DESC";
 
         try {
             PreparedStatement statement = ControladorConexion.miConexion.prepareStatement(consultaSQL);

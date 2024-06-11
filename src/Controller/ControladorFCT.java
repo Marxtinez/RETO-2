@@ -82,15 +82,4 @@ public class ControladorFCT {
         ps.executeUpdate();
         ps.close();
     }
-    /*
-    public static void main(String[] args) throws SQLException {
-        cargaContenidoFCTs();
-        System.out.println(fcts.toString());
-        //agregaFCT("GRUPO10", "CIF001", "23-24", 1);
-        //modificaFCT("GRUPO10", "CIF001", "23-24", "GRUPO10", "CIF001", "23-24", 2);
-        //eliminaFCT("GRUPO10", "CIF001", "23-24");
-    }
-
-     */
-
 }
