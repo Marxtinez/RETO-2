@@ -20,7 +20,7 @@ public class PanelConsultaEmpresaTutor extends JPanel {
     public String cifMod;
 
     public PanelConsultaEmpresaTutor() throws SQLException {
-        Idioma idioma = new Idioma(Idioma.spanish);
+        Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
 
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         btnAtras = new JButton(idioma.getProperty("atras"));

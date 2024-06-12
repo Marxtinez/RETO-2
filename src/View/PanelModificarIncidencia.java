@@ -16,8 +16,7 @@ public class PanelModificarIncidencia extends JPanel {
     JLabel lblIdIncidencia, lblCif, lblDescripcion, lblFecha,lblResultado;
     JButton btnMod,btnAtras;
     public PanelModificarIncidencia() throws SQLException {
-        Idioma idioma = new Idioma(Idioma.spanish);
-
+        Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         btnAtras = new JButton(idioma.getProperty("atras"));
         btnMod = new JButton(idioma.getProperty("modificar"));

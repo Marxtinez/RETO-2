@@ -11,8 +11,8 @@ import java.awt.event.ActionListener;
 
 public class PanelAgregarFCT extends JPanel {
     JTextField txtGrupo,txtCif,txtCurso,txtAlumnos;
-    JLabel lblGrupo,lblCif,lblCurso,lblAlumno,lblResultado;
-    JButton btnAgregar,btnAtras;
+    static JLabel lblGrupo,lblCif,lblCurso,lblAlumno,lblResultado;
+    static JButton btnAgregar,btnAtras;
     public PanelAgregarFCT() {
         Idioma idioma = new Idioma(Idioma.spanish);
 
@@ -84,5 +84,15 @@ public class PanelAgregarFCT extends JPanel {
         add(Box.createVerticalStrut(10));
         add(panelBotones);
 
+    }
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
+        btnAtras.setText(idioma.getProperty("atras"));
+        btnAgregar.setText(idioma.getProperty("agregar"));
+
+        lblAlumno.setText(idioma.getProperty("alumnos"));
+        lblCurso.setText(idioma.getProperty("curso"));
+        lblGrupo.setText(idioma.getProperty("grupo"));
+        lblCif.setText(idioma.getProperty("cif"));
     }
 }

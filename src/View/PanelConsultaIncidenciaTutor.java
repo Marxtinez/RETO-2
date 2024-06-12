@@ -21,7 +21,7 @@ public class PanelConsultaIncidenciaTutor extends JPanel {
     PanelModificarIncidencia panelModificarIncidencia = new PanelModificarIncidencia();
 
     public PanelConsultaIncidenciaTutor() throws SQLException {
-        Idioma idioma = new Idioma(Idioma.spanish);
+        Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
 
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         btnAtras = new JButton(idioma.getProperty("atras"));

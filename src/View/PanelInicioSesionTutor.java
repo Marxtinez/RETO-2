@@ -15,8 +15,7 @@ public class PanelInicioSesionTutor extends JPanel {
     JButton btnAtras,btnEntrar;
     public JTextField txtNombre,txtPassword;
     public PanelInicioSesionTutor() throws SQLException {
-        Idioma idioma = new Idioma(Idioma.spanish);
-
+        Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
         lblNombre = new JLabel(idioma.getProperty("usuario"));
         lblPassword = new JLabel(idioma.getProperty("contrasena"));
         btnAtras = new JButton(idioma.getProperty("atras"));

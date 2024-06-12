@@ -22,7 +22,7 @@ public class PanelConsultaTrabajadorTutor extends JPanel {
     PanelModificarTrabajador panelModificarTrabajador = new PanelModificarTrabajador();
 
     public PanelConsultaTrabajadorTutor() throws SQLException {
-        Idioma idioma = new Idioma(Idioma.spanish);
+        Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
 
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         btnAtras = new JButton(idioma.getProperty("atras"));

@@ -10,7 +10,7 @@ public class PanelConsultasEspecificas extends JPanel {
     JButton btnC1,btnC2,btnC3,btnC4,btnC5,btnC6,btnC7,btnC8,btnAtras;
     JLabel lblC1,lblC2,lblC3,lblC4,lblC5,lblC6,lblC7,lblC8;
     public PanelConsultasEspecificas() {
-        Idioma idioma = new Idioma(Idioma.spanish);
+        Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
 
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 

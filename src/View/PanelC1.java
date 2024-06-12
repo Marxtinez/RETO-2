@@ -12,8 +12,7 @@ public class PanelC1 extends JPanel {
     JTextField txtBusca;
     JTable tabla;
     public PanelC1() {
-        Idioma idioma = new Idioma(Idioma.spanish);
-
+        Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
         String[] columns = {"CIF","Nombre_Empresa","Direccion_Empresa","Tecnologias_Empresa","Sector_Empresa","Telefono_Empresa","Numero_Empleados","Ultimo_Anio_Colaboracion","ID_Profesor","Nombre_Profesor","Email_Profesor","Telefono_Profesor","ID_Trabajador","Nombre_Trabajador","Telefono_Trabajador","Cargo_Trabajador","Persona_Contacto"};

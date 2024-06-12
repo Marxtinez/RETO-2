@@ -12,8 +12,8 @@ import java.sql.SQLException;
 
 public class PanelAgregarTutor extends JPanel {
     JTextField txtIdTutor, txtNombre, txtEmail, txtTelefono;
-    JLabel lblIdTutor, lblNombre, lblEmail, lblTelefono,lblResultado;
-    JButton btnAgregar,btnAtras;
+    static JLabel lblIdTutor, lblNombre, lblEmail, lblTelefono,lblResultado;
+    static JButton btnAgregar,btnAtras;
     public PanelAgregarTutor() throws SQLException {
         Idioma idioma = new Idioma(Idioma.spanish);
 
@@ -90,6 +90,17 @@ public class PanelAgregarTutor extends JPanel {
         add(lblResultado);
         add(Box.createVerticalStrut(10));
         add(panelBotones);
+
+    }
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
+        btnAtras.setText(idioma.getProperty("atras"));
+        btnAgregar.setText(idioma.getProperty("agregar"));
+
+        lblTelefono.setText(idioma.getProperty("telefono"));
+        lblEmail.setText(idioma.getProperty("email"));
+        lblIdTutor.setText(idioma.getProperty("idtutor"));
+        lblNombre.setText(idioma.getProperty("nombre"));
 
     }
 }

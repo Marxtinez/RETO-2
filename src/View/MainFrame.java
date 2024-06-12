@@ -57,4 +57,7 @@ class MainPanel extends JPanel {
 
         master.add(main);
     }
+    public void actualizaIdioma(){
+
+    }
 }

@@ -32,8 +32,7 @@ public class PanelOpcionesTutor extends JPanel {
 
     JButton btnAtras,btnEmpresa,btnFCT,btnTutores,btnTrabajador,btnIncidencia,btnConsultas;
     public PanelOpcionesTutor() throws SQLException {
-        Idioma idioma = new Idioma(Idioma.spanish);
-
+        Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
         btnAtras = new JButton(idioma.getProperty("atras"));
         btnEmpresa = new JButton(idioma.getProperty("empresa"));
         btnFCT = new JButton(idioma.getProperty("fct"));

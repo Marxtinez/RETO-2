@@ -14,6 +14,7 @@ public class ControladorConexion {
     public static String user = "postgres";
     public static String password = "Virtual01";
     public static Connection miConexion = DBConnection.getConnection(url, user, password);
+
     public static void nuevaConexion(String urlNueva, String nameNuevo, String pswdNuevo){
         url=urlNueva;
         user=nameNuevo;

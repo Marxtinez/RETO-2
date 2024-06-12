@@ -14,8 +14,8 @@ import java.sql.SQLException;
 public class PanelAgregarTrabajador extends JPanel {
     JTextField txtIdTrabajador,txtNombre,txtTelefono,txtEmail,txtCargo,txtCif;
     JCheckBox checkContaco;
-    JLabel lblIdTrabajador,lblNombre,lblTelefono,lblEmail,lblCargo,lblContaco,lblCif,lblResultado;
-    JButton btnAgregar,btnAtras;
+    static JLabel lblIdTrabajador,lblNombre,lblTelefono,lblEmail,lblCargo,lblContaco,lblCif,lblResultado;
+    static JButton btnAgregar,btnAtras;
 
     public PanelAgregarTrabajador() throws SQLException {
         Idioma idioma = new Idioma(Idioma.spanish);
@@ -120,5 +120,19 @@ public class PanelAgregarTrabajador extends JPanel {
         add(Box.createVerticalStrut(10));
         add(panelBotones);
 
+    }
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
+
+        btnAtras.setText(idioma.getProperty("atras"));
+        btnAgregar.setText(idioma.getProperty("agregar"));
+
+        lblTelefono.setText(idioma.getProperty("telefono"));
+        lblEmail.setText(idioma.getProperty("email"));
+        lblIdTrabajador.setText(idioma.getProperty("idtrabajador"));
+        lblNombre.setText(idioma.getProperty("nombre"));
+        lblCargo.setText(idioma.getProperty("cargo"));
+        lblCif.setText(idioma.getProperty("cif"));
+        lblContaco.setText(idioma.getProperty("contacto"));
     }
 }

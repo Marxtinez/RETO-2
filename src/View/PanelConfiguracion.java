@@ -6,12 +6,14 @@ import Model.Idioma;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PanelConfiguracion extends JPanel {
-    JComboBox comboIdioma = new JComboBox<>();
-    JLabel lblURl, lblUsuario, lblPassword;
+    public static JComboBox comboIdioma = new JComboBox<>();
+    static JLabel lblURl, lblUsuario, lblPassword;
     JTextField txtUrl,txtNombre,txtPassword;
-    JButton btnAcceder,btnAtras;
+    static JButton btnAcceder,btnAtras;
     public PanelConfiguracion() {
         Idioma idioma = new Idioma(Idioma.spanish);
 
@@ -71,5 +73,34 @@ public class PanelConfiguracion extends JPanel {
                 throw new RuntimeException(ex);
             }
         });
+        comboIdioma.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(PanelAgregarEmpresa.btnAtras != null) {
+                    PanelAgregarEmpresa.actualizaIdioma(comboIdioma.getSelectedIndex());
+                PanelAgregarFCT.actualizaIdioma(comboIdioma.getSelectedIndex());
+                PanelAgregarIncidencia.actualizaIdioma(comboIdioma.getSelectedIndex());
+                PanelAgregarTrabajador.actualizaIdioma(comboIdioma.getSelectedIndex());
+                PanelAgregarTutor.actualizaIdioma(comboIdioma.getSelectedIndex());
+                PanelConfiguracion.actualizaIdioma(comboIdioma.getSelectedIndex());
+
+
+                    //PanelAgregarFCT.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    //PanelAgregarFCT.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    //PanelAgregarFCT.actualizaIdioma(comboIdioma.getSelectedIndex());
+                }
+            }
+        });
     }
+
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
+        btnAtras.setText(idioma.getProperty("atras"));
+        btnAcceder.setText(idioma.getProperty("agregar"));
+
+        lblURl.setText(idioma.getProperty("url"));
+        lblUsuario.setText(idioma.getProperty("usuario"));
+        lblPassword.setText(idioma.getProperty("contrasena"));
+    }
+
 }

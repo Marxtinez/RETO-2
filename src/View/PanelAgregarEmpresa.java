@@ -1,5 +1,6 @@
 package View;
 
+import Controller.ControladorConexion;
 import Controller.ControladorEmpresa;
 import Controller.ControladorPanelPrincipal;
 import Model.Idioma;
@@ -7,14 +8,13 @@ import Model.Idioma;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 public class PanelAgregarEmpresa extends JPanel {
-    JTextField txtCif,txtNombre,txtDireccion,txtTecnologias,txtSector,txtTelefono,txtEmpleados,txtUltColab;
-    JButton btnAtras,btnAgregar;
-    JLabel lblCif,lblNombre,lblDireccion,lblTecnologias,lblSector,lblTelefono,lblEmpleados,lblUltColab,lblResultado;
+    public JTextField txtCif,txtNombre,txtDireccion,txtTecnologias,txtSector,txtTelefono,txtEmpleados,txtUltColab;
+    public static JButton btnAtras,btnAgregar;
+    public static JLabel lblCif,lblNombre,lblDireccion,lblTecnologias,lblSector,lblTelefono,lblEmpleados,lblUltColab,lblResultado;
     public PanelAgregarEmpresa() {
-        Idioma idioma = new Idioma(Idioma.spanish);
+        Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
 
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         btnAtras = new JButton(idioma.getProperty("atras"));
@@ -113,4 +113,21 @@ public class PanelAgregarEmpresa extends JPanel {
         add(Box.createVerticalStrut(10));
         add(panelBotones);
     }
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
+
+        btnAtras.setText(idioma.getProperty("atras"));
+        btnAgregar.setText(idioma.getProperty("agregar"));
+        lblCif.setText(idioma.getProperty("cif"));
+        lblDireccion.setText(idioma.getProperty("direccion"));
+        lblEmpleados.setText(idioma.getProperty("empleados"));
+        lblSector.setText(idioma.getProperty("sector"));
+        lblTecnologias.setText(idioma.getProperty("tecno"));
+        lblTelefono.setText(idioma.getProperty("telefono"));
+        lblNombre.setText(idioma.getProperty("nombre"));
+        lblUltColab.setText(idioma.getProperty("anioColab"));
+
+    }
+
+
 }

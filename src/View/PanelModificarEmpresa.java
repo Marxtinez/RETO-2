@@ -14,8 +14,7 @@ public class PanelModificarEmpresa extends JPanel {
     JButton btnAtras, btnMod;
     JLabel lblCif,lblNombre,lblDireccion,lblTecnologias,lblSector,lblTelefono,lblEmpleados,lblUltColab,lblResultado;
     public PanelModificarEmpresa() {
-        Idioma idioma = new Idioma(Idioma.spanish);
-
+        Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         btnAtras = new JButton(idioma.getProperty("atras"));
         btnMod = new JButton(idioma.getProperty("modificar"));
