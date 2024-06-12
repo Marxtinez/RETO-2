@@ -1,6 +1,7 @@
 package View;
 
 import Controller.ControladorConsultaEmpresaPorCIF;
+import Controller.ControladorPanelPrincipal;
 import Model.*;
 
 import javax.swing.*;
@@ -23,7 +24,6 @@ public class PanelC1 extends JPanel {
         tabla = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(tabla);
         tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tabla.setPreferredSize(new Dimension(200,175));
 
         JPanel panelForm = new JPanel();
         panelForm.setLayout(new BoxLayout(panelForm,BoxLayout.X_AXIS));
@@ -34,8 +34,13 @@ public class PanelC1 extends JPanel {
         txtBusca = new JTextField();
         lblBusca = new JLabel(idioma.getProperty("cif"));
         btnBusca = new JButton(idioma.getProperty("buscar"));
+        btnAtras = new JButton(idioma.getProperty("atras"));
+        btnAtras.setAlignmentX(CENTER_ALIGNMENT);
 
-        btnBusca.addActionListener(e-> {ControladorConsultaEmpresaPorCIF.cargaConsultaEmpresaC1(txtBusca.getText());
+        btnAtras.addActionListener(e-> ControladorPanelPrincipal.panelAntiguo());
+        btnBusca.addActionListener(e-> {
+            tableModel.setRowCount(0);
+            ControladorConsultaEmpresaPorCIF.cargaConsultaEmpresaC1(txtBusca.getText());
             for (EmpresaTutorTrabajador consulta : ControladorConsultaEmpresaPorCIF.resultados){
                 Empresa empresa = consulta.getEmpresa();
                 Trabajador trabajador = consulta.getTrabajador();
@@ -53,8 +58,13 @@ public class PanelC1 extends JPanel {
         panelForm.add(Box.createHorizontalStrut(20));
         panelForm.add(btnBusca);
 
+        add(panelForm);
+        add(Box.createVerticalStrut(15));
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setPreferredSize(new Dimension(400,200));
         add(scrollPane);
+        add(Box.createVerticalStrut(15));
+        add(btnAtras);
     }
 }
