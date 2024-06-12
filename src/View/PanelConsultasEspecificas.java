@@ -32,6 +32,7 @@ public class PanelConsultasEspecificas extends JPanel {
         btnC7 = new JButton(idioma.getProperty("ir"));
         btnC8 = new JButton(idioma.getProperty("ir"));
         btnAtras = new JButton(idioma.getProperty("atras"));
+        btnAtras.setAlignmentX(CENTER_ALIGNMENT);
 
         btnAtras.addActionListener(e-> ControladorPanelPrincipal.panelAntiguo());
         btnC1.addActionListener(e-> ControladorPanelPrincipal.nuevoPanelActivo(new PanelC1()));
@@ -77,5 +78,6 @@ public class PanelConsultasEspecificas extends JPanel {
         add(Box.createVerticalStrut(25));
         add(panelform);
         add(Box.createVerticalStrut(25));
+        add(btnAtras);
     }
 }
