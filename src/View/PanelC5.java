@@ -20,6 +20,7 @@ public class PanelC5 extends JPanel {
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
         String[] columns = {"Id_Incidencia","Descripcion","Fecha","Cif"};
+        String fechaIni,fechaFin;
 
         DefaultTableModel tableModel = new DefaultTableModel(columns,0);
         tabla = new JTable(tableModel);
@@ -41,7 +42,8 @@ public class PanelC5 extends JPanel {
         btnAtras.addActionListener(e-> ControladorPanelPrincipal.panelAntiguo());
         btnBusca.addActionListener(e-> {
             tableModel.setRowCount(0);
-            //ControladorConsultaIncidenciasCurso.
+            System.out.println(txtCurso.getText().substring(0,4));
+            //ControladorConsultaIncidenciasCurso.cargarConsultaIncidenciasPorCurso();
             for (EmpresaCursoFCT consulta : ControladorConsultaFCTPorEmpresaYCurso.resultados){
                 String[] fila = {consulta.getId_grupo(),consulta.getId_ciclo(), String.valueOf(consulta.getCantidad_alumnos_realizado_FCT())};
                 tableModel.addRow(fila);
