@@ -78,16 +78,18 @@ public class PanelConfiguracion extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if(PanelAgregarEmpresa.btnAtras != null) {
                     PanelAgregarEmpresa.actualizaIdioma(comboIdioma.getSelectedIndex());
-                PanelAgregarFCT.actualizaIdioma(comboIdioma.getSelectedIndex());
-                PanelAgregarIncidencia.actualizaIdioma(comboIdioma.getSelectedIndex());
-                PanelAgregarTrabajador.actualizaIdioma(comboIdioma.getSelectedIndex());
-                PanelAgregarTutor.actualizaIdioma(comboIdioma.getSelectedIndex());
-                PanelConfiguracion.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelAgregarFCT.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelAgregarIncidencia.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelAgregarTrabajador.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelAgregarTutor.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelConfiguracion.actualizaIdioma(comboIdioma.getSelectedIndex());
 
 
                     //PanelAgregarFCT.actualizaIdioma(comboIdioma.getSelectedIndex());
                     //PanelAgregarFCT.actualizaIdioma(comboIdioma.getSelectedIndex());
                     //PanelAgregarFCT.actualizaIdioma(comboIdioma.getSelectedIndex());
+                }else{
+
                 }
             }
         });
@@ -95,6 +97,7 @@ public class PanelConfiguracion extends JPanel {
 
     public static void actualizaIdioma(int newLang){
         Idioma idioma = new Idioma(newLang);
+
         btnAtras.setText(idioma.getProperty("atras"));
         btnAcceder.setText(idioma.getProperty("agregar"));
 
