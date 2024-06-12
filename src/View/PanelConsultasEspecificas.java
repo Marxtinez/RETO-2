@@ -1,5 +1,6 @@
 package View;
 
+import Controller.ControladorPanelPrincipal;
 import Model.Idioma;
 
 import javax.swing.*;
@@ -31,6 +32,8 @@ public class PanelConsultasEspecificas extends JPanel {
         btnC7 = new JButton(idioma.getProperty("ir"));
         btnC8 = new JButton(idioma.getProperty("ir"));
         btnAtras = new JButton(idioma.getProperty("atras"));
+
+        btnC1.addActionListener(e-> ControladorPanelPrincipal.nuevoPanelActivo(new PanelC1()));
 
         lblC1 = new JLabel(idioma.getProperty("c1"));
         lblC2 = new JLabel(idioma.getProperty("c2"));
