@@ -5,10 +5,13 @@ import Controller.ControladorConsultaIncidenciasCurso;
 import Controller.ControladorPanelPrincipal;
 import Model.EmpresaCursoFCT;
 import Model.Idioma;
+import Model.Incidencia;
+import Model.IncidenciaGrupo;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class PanelC5 extends JPanel {
     JButton btnBusca,btnAtras;
@@ -20,7 +23,6 @@ public class PanelC5 extends JPanel {
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
         String[] columns = {"Id_Incidencia","Descripcion","Fecha","Cif"};
-        String fechaIni,fechaFin;
 
         DefaultTableModel tableModel = new DefaultTableModel(columns,0);
         tabla = new JTable(tableModel);
@@ -42,10 +44,12 @@ public class PanelC5 extends JPanel {
         btnAtras.addActionListener(e-> ControladorPanelPrincipal.panelAntiguo());
         btnBusca.addActionListener(e-> {
             tableModel.setRowCount(0);
-            System.out.println(txtCurso.getText().substring(0,4));
-            //ControladorConsultaIncidenciasCurso.cargarConsultaIncidenciasPorCurso();
-            for (EmpresaCursoFCT consulta : ControladorConsultaFCTPorEmpresaYCurso.resultados){
-                String[] fila = {consulta.getId_grupo(),consulta.getId_ciclo(), String.valueOf(consulta.getCantidad_alumnos_realizado_FCT())};
+            String Ini = (txtCurso.getText().substring(0, 4)).concat("-09-01");
+            String Fin = (txtCurso.getText().substring(5, 9)).concat("-07-01");
+            ControladorConsultaIncidenciasCurso.cargarConsultaIncidenciasPorCurso(Ini,Fin,txtCurso.getText());
+            for (IncidenciaGrupo consulta : ControladorConsultaIncidenciasCurso.resultados){
+                Incidencia incidencia = consulta.getIncidencia();
+                String[] fila = {String.valueOf(incidencia.getId_incidencia()),incidencia.getDescripcion(),incidencia.getFecha(),incidencia.getCIF()};
                 tableModel.addRow(fila);
                 tableModel.fireTableDataChanged();
             }});

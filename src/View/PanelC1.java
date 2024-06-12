@@ -42,7 +42,6 @@ public class PanelC1 extends JPanel {
             tableModel.setRowCount(0);
             ControladorConsultaEmpresaPorCIF.cargaConsultaEmpresaC1(txtBusca.getText());
             for (EmpresaTutorTrabajador consulta : ControladorConsultaEmpresaPorCIF.resultados){
-                System.out.println("faa");
                 Empresa empresa = consulta.getEmpresa();
                 Trabajador trabajador = consulta.getTrabajador();
                 TutorFCT tutorFCT = consulta.getTutorFCT();

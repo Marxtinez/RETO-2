@@ -1,9 +1,9 @@
 package Model;
 
 public class Empresa_Contacta_Tutor {
-    private int id_tutor;
-    private  String CIF;
-    private String fecha;
+    public int id_tutor;
+    public   String CIF;
+    public String fecha;
 
 
     public Empresa_Contacta_Tutor(int id_tutor, String CIF, String fecha) {
