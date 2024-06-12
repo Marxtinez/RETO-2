@@ -33,7 +33,9 @@ public class PanelConsultasEspecificas extends JPanel {
         btnC8 = new JButton(idioma.getProperty("ir"));
         btnAtras = new JButton(idioma.getProperty("atras"));
 
+        btnAtras.addActionListener(e-> ControladorPanelPrincipal.panelAntiguo());
         btnC1.addActionListener(e-> ControladorPanelPrincipal.nuevoPanelActivo(new PanelC1()));
+        btnC2.addActionListener(e-> ControladorPanelPrincipal.nuevoPanelActivo(new PanelC2()));
 
         lblC1 = new JLabel(idioma.getProperty("c1"));
         lblC2 = new JLabel(idioma.getProperty("c2"));
