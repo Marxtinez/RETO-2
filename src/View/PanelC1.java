@@ -12,7 +12,7 @@ public class PanelC1 extends JPanel {
 
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
-        String[] columns = {"a","b","c","d"};
+        String[] columns = {"CIF","Nombre_Empresa","Direccion_Empresa","Tecnologias_Empresa","Sector_Empresa","Telefono_Empresa","Numero_Empleados","Ultimo_Anio_Colaboracion","ID_Profesor","Nombre_Profesor","Email_Profesor","Telefono_Profesor","ID_Trabajador","Nombre_Trabajador","Telefono_Trabajador","Cargo_Trabajador","Persona_Contacto"};
 
         DefaultTableModel tableModel = new DefaultTableModel(columns,0);
         tabla = new JTable(tableModel);
