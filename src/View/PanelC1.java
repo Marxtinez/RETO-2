@@ -18,6 +18,9 @@ public class PanelC1 extends JPanel {
         tabla = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(tabla);
 
+        tabla.getColumnModel().getColumn(1).setPreferredWidth(150);
+
+
         add(scrollPane);
     }
 }
