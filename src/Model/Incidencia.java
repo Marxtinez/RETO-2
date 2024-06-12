@@ -47,6 +47,6 @@ public class Incidencia {
 
     @Override
     public String toString() {
-        return "Num Incidencia: "+id_incidencia;
+        return "Incidencia{id_incidencia=" + id_incidencia + ", descripcion='" + descripcion + "', fecha='" + fecha + "', CIF='" + CIF + "'}";
     }
 }
