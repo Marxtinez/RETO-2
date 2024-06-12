@@ -5,11 +5,13 @@ import Model.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.util.Vector;
 
 public class PanelC1 extends JPanel {
-    JButton btnBusca;
+    JButton btnBusca,btnAtras;
     JTextField txtBusca;
+    JLabel lblBusca;
     JTable tabla;
     public PanelC1() {
         Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
@@ -21,8 +23,16 @@ public class PanelC1 extends JPanel {
         tabla = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(tabla);
         tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tabla.setPreferredSize(new Dimension(200,175));
+
+        JPanel panelForm = new JPanel();
+        panelForm.setLayout(new BoxLayout(panelForm,BoxLayout.X_AXIS));
+
+        JPanel panelFormIzq = new JPanel();
+        panelFormIzq.setLayout(new BoxLayout(panelFormIzq,BoxLayout.Y_AXIS));
 
         txtBusca = new JTextField();
+        lblBusca = new JLabel(idioma.getProperty("cif"));
         btnBusca = new JButton(idioma.getProperty("buscar"));
 
         btnBusca.addActionListener(e-> {ControladorConsultaEmpresaPorCIF.cargaConsultaEmpresaC1(txtBusca.getText());
@@ -35,9 +45,16 @@ public class PanelC1 extends JPanel {
                 tableModel.fireTableDataChanged();
             }});
 
-        add(txtBusca);
-        add(btnBusca);
+        panelFormIzq.add(lblBusca);
+        panelFormIzq.add(txtBusca);
+        panelFormIzq.add(btnBusca);
+
+        panelForm.add(panelFormIzq);
+        panelForm.add(Box.createHorizontalStrut(20));
+        panelForm.add(btnBusca);
+
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         add(scrollPane);
     }
 }
