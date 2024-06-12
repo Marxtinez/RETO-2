@@ -52,7 +52,7 @@ public class PanelC2 extends JPanel{
 
         panelFormIzq.add(lblCiclo);
         panelFormIzq.add(txtCiclo);
-        panelFormIzq.add(Box.createVerticalStrut(15));
+        panelFormIzq.add(Box.createVerticalStrut(10));
         panelFormIzq.add(lblCurso);
         panelFormIzq.add(txtCurso);
         panelFormIzq.add(btnBusca);
@@ -65,7 +65,7 @@ public class PanelC2 extends JPanel{
         add(Box.createVerticalStrut(15));
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setPreferredSize(new Dimension(400,175));
+        scrollPane.setPreferredSize(new Dimension(400,150));
         add(scrollPane);
         add(Box.createVerticalStrut(15));
         add(btnAtras);

@@ -39,17 +39,16 @@ public class PanelC1 extends JPanel {
 
         btnAtras.addActionListener(e-> ControladorPanelPrincipal.panelAntiguo());
         btnBusca.addActionListener(e-> {
-            //tableModel.setRowCount(0);
+            tableModel.setRowCount(0);
             ControladorConsultaEmpresaPorCIF.cargaConsultaEmpresaC1(txtBusca.getText());
             for (EmpresaTutorTrabajador consulta : ControladorConsultaEmpresaPorCIF.resultados){
                 System.out.println("faa");
                 Empresa empresa = consulta.getEmpresa();
                 Trabajador trabajador = consulta.getTrabajador();
                 TutorFCT tutorFCT = consulta.getTutorFCT();
-                //String[] fila = {empresa.getCIF(), empresa.getNombre(), empresa.getDireccion(), empresa.getTecnologias(), empresa.getSector(), empresa.getTelefono(), String.valueOf(empresa.getNum_empleados()), String.valueOf(empresa.getUlt_anio_colab()), String.valueOf(tutorFCT.getId_tutor()),tutorFCT.getNombre(),tutorFCT.getEmail(),tutorFCT.getTelefono(), String.valueOf(trabajador.getId_trabajador()),trabajador.getNombre(),trabajador.getTelefono(),trabajador.getCargo(), String.valueOf(trabajador.getPersona_contacto())};
-                String[] fila = {"CIF","Nombre_Empresa","Direccion_Empresa","Tecnologias_Empresa","Sector_Empresa","Telefono_Empresa","Numero_Empleados","Ultimo_Anio_Colaboracion","ID_Profesor","Nombre_Profesor","Email_Profesor","Telefono_Profesor","ID_Trabajador","Nombre_Trabajador","Telefono_Trabajador","Cargo_Trabajador","Persona_Contacto"};
+                String[] fila = {empresa.getCIF(), empresa.getNombre(), empresa.getDireccion(), empresa.getTecnologias(), empresa.getSector(), empresa.getTelefono(), String.valueOf(empresa.getNum_empleados()), String.valueOf(empresa.getUlt_anio_colab()), String.valueOf(tutorFCT.getId_tutor()),tutorFCT.getNombre(),tutorFCT.getEmail(),tutorFCT.getTelefono(), String.valueOf(trabajador.getId_trabajador()),trabajador.getNombre(),trabajador.getTelefono(),trabajador.getCargo(), String.valueOf(trabajador.getPersona_contacto())};
                 tableModel.addRow(fila);
-                //tableModel.fireTableDataChanged();
+                tableModel.fireTableDataChanged();
             }
             tableModel.fireTableDataChanged();
         });
