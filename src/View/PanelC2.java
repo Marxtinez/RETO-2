@@ -12,7 +12,7 @@ import java.awt.*;
 public class PanelC2 extends JPanel{
     static JButton btnBusca,btnAtras;
     JTextField txtCiclo,txtCurso;
-    static Label lblCiclo,lblCurso;
+    static JLabel lblCiclo,lblCurso;
     JTable tabla;
     public PanelC2() {
         Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
