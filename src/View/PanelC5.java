@@ -27,7 +27,6 @@ public class PanelC5 extends JPanel {
         DefaultTableModel tableModel = new DefaultTableModel(columns,0);
         tabla = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(tabla);
-        tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         JPanel panelForm = new JPanel();
         panelForm.setLayout(new BoxLayout(panelForm,BoxLayout.X_AXIS));
