@@ -10,9 +10,9 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class PanelC3 extends JPanel{
-    JButton btnBusca,btnAtras;
+    static JButton btnBusca,btnAtras;
     JTextField txtGrupo,txtCurso;
-    JLabel lblGrupo,lblCurso;
+    static JLabel lblGrupo,lblCurso;
     JTable tabla;
     public PanelC3() {
         Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
@@ -70,5 +70,13 @@ public class PanelC3 extends JPanel{
         add(scrollPane);
         add(Box.createVerticalStrut(15));
         add(btnAtras);
+    }
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
+
+        lblGrupo.setText(idioma.getProperty("grupo"));
+        lblCurso.setText(idioma.getProperty("curso"));
+        btnBusca.setText(idioma.getProperty("buscar"));
+        btnAtras.setText(idioma.getProperty("atras"));
     }
 }

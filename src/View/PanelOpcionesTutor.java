@@ -30,7 +30,7 @@ public class PanelOpcionesTutor extends JPanel {
         }
     }
 
-    JButton btnAtras,btnEmpresa,btnFCT,btnTutores,btnTrabajador,btnIncidencia,btnConsultas;
+    static JButton btnAtras,btnEmpresa,btnFCT,btnTutores,btnTrabajador,btnIncidencia,btnConsultas;
     public PanelOpcionesTutor() throws SQLException {
         Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
         btnAtras = new JButton(idioma.getProperty("atras"));
@@ -83,5 +83,16 @@ public class PanelOpcionesTutor extends JPanel {
         add(btnConsultas);
         add(Box.createVerticalStrut(30));
         add(btnAtras);
+    }
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
+
+        btnAtras.setText(idioma.getProperty("atras"));
+        btnEmpresa.setText(idioma.getProperty("empresa"));
+        btnFCT.setText(idioma.getProperty("fct"));
+        btnTutores.setText(idioma.getProperty("tutor"));
+        btnTrabajador.setText(idioma.getProperty("trabajador"));
+        btnIncidencia.setText(idioma.getProperty("incidencia"));
+        btnConsultas.setText(idioma.getProperty("consultas"));
     }
 }

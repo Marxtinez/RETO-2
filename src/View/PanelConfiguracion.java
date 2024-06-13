@@ -82,15 +82,30 @@ public class PanelConfiguracion extends JPanel {
                     PanelAgregarIncidencia.actualizaIdioma(comboIdioma.getSelectedIndex());
                     PanelAgregarTrabajador.actualizaIdioma(comboIdioma.getSelectedIndex());
                     PanelAgregarTutor.actualizaIdioma(comboIdioma.getSelectedIndex());
-                    PanelConfiguracion.actualizaIdioma(comboIdioma.getSelectedIndex());
-
-
-                    //PanelAgregarFCT.actualizaIdioma(comboIdioma.getSelectedIndex());
-                    //PanelAgregarFCT.actualizaIdioma(comboIdioma.getSelectedIndex());
-                    //PanelAgregarFCT.actualizaIdioma(comboIdioma.getSelectedIndex());
-                }else{
-
+                    PanelC1.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelC2.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelC3.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelC4.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelC5.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelC6.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelC7.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelC8.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelConsultaEmpresaTutor.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelConsultaFCTTutor.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelConsultaIncidenciaTutor.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelConsultasEspecificas.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelConsultaTrabajadorTutor.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelConsultaTutoresTutor.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelModificarEmpresa.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelModificarFCT.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelModificarIncidencia.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelModificarTrabajador.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelModificarTutor.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelOpcionesTutor.actualizaIdioma(comboIdioma.getSelectedIndex());
                 }
+                PanelConfiguracion.actualizaIdioma(comboIdioma.getSelectedIndex());
+                MainPanel.actualizaIdioma(comboIdioma.getSelectedIndex());
+                PanelInicioSesionTutor.actualizaIdioma(comboIdioma.getSelectedIndex());
             }
         });
     }

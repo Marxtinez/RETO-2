@@ -11,8 +11,8 @@ import java.sql.SQLException;
 
 public class PanelModificarFCT extends JPanel {
     JTextField txtGrupo,txtCif,txtCurso,txtAlumnos;
-    JLabel lblGrupo,lblCif,lblCurso,lblAlumno,lblResultado;
-    JButton btnMod,btnAtras;
+    static JLabel lblGrupo,lblCif,lblCurso,lblAlumno,lblResultado;
+    static JButton btnMod,btnAtras;
     public PanelModificarFCT() {
         Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
@@ -82,6 +82,16 @@ public class PanelModificarFCT extends JPanel {
         add(lblResultado);
         add(Box.createVerticalStrut(10));
         add(panelBotones);
+    }
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
 
+        btnAtras.setText(idioma.getProperty("atras"));
+        btnMod.setText(idioma.getProperty("modificar"));
+
+        lblAlumno.setText(idioma.getProperty("alumnos"));
+        lblCurso.setText(idioma.getProperty("curso"));
+        lblGrupo.setText(idioma.getProperty("grupo"));
+        lblCif.setText(idioma.getProperty("cif"));
     }
 }

@@ -7,8 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PanelConsultasEspecificas extends JPanel {
-    JButton btnC1,btnC2,btnC3,btnC4,btnC5,btnC6,btnC7,btnC8,btnAtras;
-    JLabel lblC1,lblC2,lblC3,lblC4,lblC5,lblC6,lblC7,lblC8;
+    static JButton btnC1,btnC2,btnC3,btnC4,btnC5,btnC6,btnC7,btnC8,btnAtras;
+    static JLabel lblC1,lblC2,lblC3,lblC4,lblC5,lblC6,lblC7,lblC8;
     public PanelConsultasEspecificas() {
         Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
 
@@ -85,5 +85,27 @@ public class PanelConsultasEspecificas extends JPanel {
         add(panelform);
         add(Box.createVerticalStrut(25));
         add(btnAtras);
+    }
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
+
+        btnC1.setText(idioma.getProperty("ir"));
+        btnC2.setText(idioma.getProperty("ir"));
+        btnC3.setText(idioma.getProperty("ir"));
+        btnC4.setText(idioma.getProperty("ir"));
+        btnC5.setText(idioma.getProperty("ir"));
+        btnC6.setText(idioma.getProperty("ir"));
+        btnC7.setText(idioma.getProperty("ir"));
+        btnC8.setText(idioma.getProperty("ir"));
+        btnAtras.setText(idioma.getProperty("atras"));
+
+        lblC1.setText(idioma.getProperty("c1"));
+        lblC2.setText(idioma.getProperty("c2"));
+        lblC3.setText(idioma.getProperty("c3"));
+        lblC4.setText(idioma.getProperty("c4"));
+        lblC5.setText(idioma.getProperty("c5"));
+        lblC6.setText(idioma.getProperty("c6"));
+        lblC7.setText(idioma.getProperty("c7"));
+        lblC8.setText(idioma.getProperty("c8"));
     }
 }

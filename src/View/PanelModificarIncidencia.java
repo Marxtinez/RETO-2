@@ -13,8 +13,8 @@ import java.sql.SQLException;
 
 public class PanelModificarIncidencia extends JPanel {
     JTextField txtIdIncidencia, txtCif, txtDescripcion, txtFecha;
-    JLabel lblIdIncidencia, lblCif, lblDescripcion, lblFecha,lblResultado;
-    JButton btnMod,btnAtras;
+    static JLabel lblIdIncidencia, lblCif, lblDescripcion, lblFecha,lblResultado;
+    static JButton btnMod,btnAtras;
     public PanelModificarIncidencia() throws SQLException {
         Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
@@ -87,5 +87,16 @@ public class PanelModificarIncidencia extends JPanel {
         add(Box.createVerticalStrut(10));
         add(panelBotones);
 
+    }
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
+
+        btnAtras.setText(idioma.getProperty("atras"));
+        btnMod.setText(idioma.getProperty("modificar"));
+
+        lblFecha.setText(idioma.getProperty("fecha"));
+        lblDescripcion.setText(idioma.getProperty("descrip"));
+        lblIdIncidencia.setText(idioma.getProperty("idincidencia"));
+        lblCif.setText(idioma.getProperty("cif"));
     }
 }

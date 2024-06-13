@@ -19,7 +19,7 @@ public class MainFrame extends JFrame {
 }
 
 class MainPanel extends JPanel {
-    JButton btn_tutor, btn_configuracion;
+    static JButton btn_tutor, btn_configuracion;
     JPanel master = new JPanel();
     ControladorPanelPrincipal panelPrincipal;
     PanelConfiguracion panelConfiguracion = new PanelConfiguracion();
@@ -57,7 +57,10 @@ class MainPanel extends JPanel {
 
         master.add(main);
     }
-    public void actualizaIdioma(){
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
 
+        btn_tutor.setText(idioma.getProperty("inicioSesionTutor"));
+        btn_configuracion.setText(idioma.getProperty("configuracion"));
     }
 }

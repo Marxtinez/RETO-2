@@ -12,8 +12,8 @@ import java.sql.SQLException;
 
 public class PanelModificarTutor extends JPanel{
     JTextField txtIdTutor, txtNombre, txtEmail, txtTelefono;
-    JLabel lblIdTutor, lblNombre, lblEmail, lblTelefono,lblResultado;
-    JButton btnMod,btnAtras;
+    static JLabel lblIdTutor, lblNombre, lblEmail, lblTelefono,lblResultado;
+    static JButton btnMod,btnAtras;
     public PanelModificarTutor() throws SQLException {
         Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
@@ -86,5 +86,16 @@ public class PanelModificarTutor extends JPanel{
         add(Box.createVerticalStrut(10));
         add(panelBotones);
 
+    }
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
+
+        btnAtras.setText(idioma.getProperty("atras"));
+        btnMod.setText(idioma.getProperty("modificar"));
+
+        lblTelefono.setText(idioma.getProperty("telefono"));
+        lblEmail.setText(idioma.getProperty("email"));
+        lblIdTutor.setText(idioma.getProperty("idtutor"));
+        lblNombre.setText(idioma.getProperty("nombre"));
     }
 }

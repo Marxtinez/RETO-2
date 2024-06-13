@@ -14,9 +14,9 @@ import java.awt.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class PanelC5 extends JPanel {
-    JButton btnBusca,btnAtras;
+    static JButton btnBusca,btnAtras;
     JTextField txtCurso;
-    JLabel lblCurso;
+    static JLabel lblCurso;
     JTable tabla;
     public PanelC5() {
         Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
@@ -71,5 +71,12 @@ public class PanelC5 extends JPanel {
         add(scrollPane);
         add(Box.createVerticalStrut(15));
         add(btnAtras);
+    }
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
+
+        lblCurso.setText(idioma.getProperty("curso"));
+        btnBusca.setText(idioma.getProperty("buscar"));
+        btnAtras.setText(idioma.getProperty("atras"));
     }
 }

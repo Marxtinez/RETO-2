@@ -16,8 +16,8 @@ public class PanelConsultaTrabajadorTutor extends JPanel {
     public JComboBox<Trabajador> comboTrabajador = new JComboBox<>();
     JTextField txtIdTrabajador,txtNombre,txtTelefono,txtEmail,txtCargo,txtCif;
     JCheckBox checkContaco;
-    JLabel lblIdTrabajador,lblNombre,lblTelefono,lblEmail,lblCargo,lblContaco,lblCif;
-    JButton btnAgregar,btnEliminar,btnModificar,btnAtras;
+    static JLabel lblIdTrabajador,lblNombre,lblTelefono,lblEmail,lblCargo,lblContaco,lblCif;
+    static JButton btnAgregar,btnEliminar,btnModificar,btnAtras;
     PanelAgregarTrabajador panelAgregarTrabajador = new PanelAgregarTrabajador();
     PanelModificarTrabajador panelModificarTrabajador = new PanelModificarTrabajador();
 
@@ -149,5 +149,21 @@ public class PanelConsultaTrabajadorTutor extends JPanel {
         add(panelFormX);
         add(Box.createVerticalStrut(20));
         add(panelBotones);
+    }
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
+
+        btnAtras.setText(idioma.getProperty("atras"));
+        btnAgregar.setText(idioma.getProperty("agregar"));
+        btnEliminar.setText(idioma.getProperty("eliminar"));
+        btnModificar.setText(idioma.getProperty("modificar"));
+
+        lblEmail.setText(idioma.getProperty("email"));
+        lblNombre.setText(idioma.getProperty("nombre"));
+        lblIdTrabajador.setText(idioma.getProperty("idtrabajador"));
+        lblTelefono.setText(idioma.getProperty("telefono"));
+        lblCargo.setText(idioma.getProperty("cargo"));
+        lblContaco.setText(idioma.getProperty("contacto"));
+        lblCif.setText(idioma.getProperty("cif"));
     }
 }

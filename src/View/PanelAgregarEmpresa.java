@@ -64,7 +64,7 @@ public class PanelAgregarEmpresa extends JPanel {
                 txtTecnologias.setText("");
                 txtTelefono.setText("");
                 txtUltColab.setText("");
-                lblResultado.setText("Empresa añadida correctamente");
+                lblResultado.setText(idioma.getProperty("agregarEmpresa"));
                 Timer timer = new Timer(2500, new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {

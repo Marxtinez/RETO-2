@@ -13,8 +13,8 @@ import java.sql.SQLException;
 public class PanelConsultaEmpresaTutor extends JPanel {
     public JComboBox<Empresa> comboEmpresa = new JComboBox<>();
     JTextField txtCif,txtNombre,txtDireccion,txtTecnologias,txtSector,txtTelefono,txtEmpleados,txtUltColab;
-    JButton btnAtras,btnModificar,btnAgregar,btnEliminar;
-    JLabel lblCif,lblNombre,lblDireccion,lblTecnologias,lblSector,lblTelefono,lblEmpleados,lblUltColab;
+    static JButton btnAtras,btnModificar,btnAgregar,btnEliminar;
+    static JLabel lblCif,lblNombre,lblDireccion,lblTecnologias,lblSector,lblTelefono,lblEmpleados,lblUltColab;
     PanelAgregarEmpresa panelAgregarEmpresa = new PanelAgregarEmpresa();
     PanelModificarEmpresa panelModificarEmpresa = new PanelModificarEmpresa();
     public String cifMod;
@@ -153,6 +153,22 @@ public class PanelConsultaEmpresaTutor extends JPanel {
         add(panelForm);
         add(Box.createVerticalStrut(20));
         add(panelBotones);
+    }
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
 
+        btnAtras.setText(idioma.getProperty("atras"));
+        btnAgregar.setText(idioma.getProperty("agregar"));
+        btnEliminar.setText(idioma.getProperty("eliminar"));
+        btnModificar.setText(idioma.getProperty("modificar"));
+
+        lblCif.setText(idioma.getProperty("cif"));
+        lblDireccion.setText(idioma.getProperty("direccion"));
+        lblEmpleados.setText(idioma.getProperty("empleados"));
+        lblSector.setText(idioma.getProperty("sector"));
+        lblTecnologias.setText(idioma.getProperty("tecno"));
+        lblTelefono.setText(idioma.getProperty("telefono"));
+        lblNombre.setText(idioma.getProperty("nombre"));
+        lblUltColab.setText(idioma.getProperty("anioColab"));
     }
 }

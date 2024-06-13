@@ -15,8 +15,8 @@ import java.sql.SQLException;
 public class PanelConsultaIncidenciaTutor extends JPanel {
     public JComboBox<Incidencia> comboIncidencia = new JComboBox<>();
     JTextField txtIdIncidencia, txtCif, txtDescripcion, txtFecha;
-    JLabel lblIdIncidencia, lblCif, lblDescripcion, lblFecha;
-    JButton btnAgregar,btnEliminar,btnModificar,btnAtras;
+    static JLabel lblIdIncidencia, lblCif, lblDescripcion, lblFecha;
+    static JButton btnAgregar,btnEliminar,btnModificar,btnAtras;
     PanelAgregarIncidencia panelAgregarIncidencia = new PanelAgregarIncidencia();
     PanelModificarIncidencia panelModificarIncidencia = new PanelModificarIncidencia();
 
@@ -118,5 +118,18 @@ public class PanelConsultaIncidenciaTutor extends JPanel {
         add(panelFormX);
         add(Box.createVerticalStrut(20));
         add(panelBotones);
+    }
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
+
+        btnAtras.setText(idioma.getProperty("atras"));
+        btnAgregar.setText(idioma.getProperty("agregar"));
+        btnEliminar.setText(idioma.getProperty("eliminar"));
+        btnModificar.setText(idioma.getProperty("modificar"));
+
+        lblFecha.setText(idioma.getProperty("fecha"));
+        lblCif.setText(idioma.getProperty("cif"));
+        lblIdIncidencia.setText(idioma.getProperty("idincidencia"));
+        lblDescripcion.setText(idioma.getProperty("descrip"));
     }
 }

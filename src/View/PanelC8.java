@@ -12,9 +12,9 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class PanelC8 extends JPanel {
-    JButton btnBusca,btnAtras;
+    static JButton btnBusca,btnAtras;
     JTextField txtBusca;
-    JLabel lblBusca;
+    static JLabel lblBusca;
     JTable tabla;
     public PanelC8() {
         Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
@@ -66,5 +66,12 @@ public class PanelC8 extends JPanel {
         add(scrollPane);
         add(Box.createVerticalStrut(15));
         add(btnAtras);
+    }
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
+
+        lblBusca.setText(idioma.getProperty("cif"));
+        btnBusca.setText(idioma.getProperty("buscar"));
+        btnAtras.setText(idioma.getProperty("atras"));
     }
 }

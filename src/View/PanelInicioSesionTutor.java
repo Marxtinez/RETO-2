@@ -11,8 +11,8 @@ import java.awt.*;
 import java.sql.SQLException;
 
 public class PanelInicioSesionTutor extends JPanel {
-    JLabel lblNombre,lblPassword;
-    JButton btnAtras,btnEntrar;
+    static JLabel lblNombre,lblPassword;
+    static JButton btnAtras,btnEntrar;
     public JTextField txtNombre,txtPassword;
     public PanelInicioSesionTutor() throws SQLException {
         Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
@@ -60,5 +60,13 @@ public class PanelInicioSesionTutor extends JPanel {
         btnEntrar.addActionListener(e-> {
             ControladorInicoSesion.cambioPanelTutor(this);
         });
+    }
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
+
+        lblNombre.setText(idioma.getProperty("usuario"));
+        lblPassword.setText(idioma.getProperty("contrasena"));
+        btnAtras.setText(idioma.getProperty("atras"));
+        btnEntrar.setText(idioma.getProperty("acceder"));
     }
 }

@@ -15,8 +15,8 @@ import java.sql.SQLException;
 public class PanelConsultaTutoresTutor extends JPanel {
     public JComboBox<TutorFCT> comboTutores = new JComboBox<>();
     JTextField txtIdTutor,txtNombre,txtTelefono,txtEmail;
-    JLabel lblIdTutor,lblNombre,lblTelefono,lblEmail;
-    JButton btnAgregar,btnEliminar,btnModificar,btnAtras;
+    static JLabel lblIdTutor,lblNombre,lblTelefono,lblEmail;
+    static JButton btnAgregar,btnEliminar,btnModificar,btnAtras;
     PanelAgregarTutor panelAgregarTutor = new PanelAgregarTutor();
     PanelModificarTutor panelModificarTutor = new PanelModificarTutor();
 
@@ -115,5 +115,18 @@ public class PanelConsultaTutoresTutor extends JPanel {
         add(panelFormX);
         add(Box.createVerticalStrut(20));
         add(panelBotones);
+    }
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
+
+        btnAtras.setText(idioma.getProperty("atras"));
+        btnAgregar.setText(idioma.getProperty("agregar"));
+        btnEliminar.setText(idioma.getProperty("eliminar"));
+        btnModificar.setText(idioma.getProperty("modificar"));
+
+        lblEmail.setText(idioma.getProperty("email"));
+        lblNombre.setText(idioma.getProperty("nombre"));
+        lblIdTutor.setText(idioma.getProperty("idtutor"));
+        lblTelefono.setText(idioma.getProperty("telefono"));
     }
 }

@@ -12,9 +12,9 @@ import java.awt.*;
 import java.sql.SQLException;
 
 public class PanelC6 extends JPanel {
-    JButton btnBusca,btnAtras;
+    static JButton btnBusca,btnAtras;
     JTextField txtCif,txtCiclo,txtCurso;
-    JLabel lblCif,lblCiclo,lblCurso;
+    static JLabel lblCif,lblCiclo,lblCurso;
     JTable tabla;
     public PanelC6() {
         Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
@@ -78,5 +78,14 @@ public class PanelC6 extends JPanel {
         add(scrollPane);
         add(Box.createVerticalStrut(15));
         add(btnAtras);
+    }
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
+
+        lblCiclo.setText(idioma.getProperty("ciclo"));
+        lblCif.setText(idioma.getProperty("cif"));
+        lblCurso.setText(idioma.getProperty("curso"));
+        btnBusca.setText(idioma.getProperty("buscar"));
+        btnAtras.setText(idioma.getProperty("atras"));
     }
 }

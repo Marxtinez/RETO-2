@@ -13,9 +13,9 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class PanelC4 extends JPanel {
-    JButton btnBusca,btnAtras;
+    static JButton btnBusca,btnAtras;
     JTextField txtCif,txtCurso;
-    JLabel lblCif,lblCurso;
+    static JLabel lblCif,lblCurso;
     JTable tabla;
     public PanelC4() {
         Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
@@ -70,5 +70,13 @@ public class PanelC4 extends JPanel {
         add(scrollPane);
         add(Box.createVerticalStrut(15));
         add(btnAtras);
+    }
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
+
+        lblCif.setText(idioma.getProperty("cif"));
+        lblCurso.setText(idioma.getProperty("curso"));
+        btnBusca.setText(idioma.getProperty("buscar"));
+        btnAtras.setText(idioma.getProperty("atras"));
     }
 }

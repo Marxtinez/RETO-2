@@ -14,8 +14,8 @@ import java.sql.SQLException;
 public class PanelConsultaFCTTutor extends JPanel{
     public JComboBox<FCT> comboFCT = new JComboBox<>();
     JTextField txtGrupo,txtCif,txtCurso,txtAlumnos;
-    JLabel lblGrupo,lblCif,lblCurso,lblAlumno;
-    JButton btnAgregar,btnEliminar,btnModificar,btnAtras;
+    static JLabel lblGrupo,lblCif,lblCurso,lblAlumno;
+    static JButton btnAgregar,btnEliminar,btnModificar,btnAtras;
     PanelAgregarFCT panelAgregarFCT = new PanelAgregarFCT();
     PanelModificarFCT panelModificarFCT = new PanelModificarFCT();
     public String cifMod,cursoMod,grupoMod;
@@ -118,5 +118,18 @@ public class PanelConsultaFCTTutor extends JPanel{
         add(panelForm);
         add(Box.createVerticalStrut(20));
         add(panelBotones);
+    }
+    public static void actualizaIdioma(int newLang){
+        Idioma idioma = new Idioma(newLang);
+
+        btnAtras.setText(idioma.getProperty("atras"));
+        btnAgregar.setText(idioma.getProperty("agregar"));
+        btnEliminar.setText(idioma.getProperty("eliminar"));
+        btnModificar.setText(idioma.getProperty("modificar"));
+
+        lblAlumno.setText(idioma.getProperty("alumnos"));
+        lblCurso.setText(idioma.getProperty("curso"));
+        lblGrupo.setText(idioma.getProperty("grupo"));
+        lblCif.setText(idioma.getProperty("cif"));
     }
 }
