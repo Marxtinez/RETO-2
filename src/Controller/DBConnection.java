@@ -3,12 +3,8 @@ package Controller;
 import java.sql.*;
 
 public class DBConnection {
-    //Esto tiene que ser privado
     private static DBConnection instance;
-
-    //Esto tiene que ser estático
     private static Connection connection;
-    //Constructor privado
     private DBConnection(String url, String user, String password){
         setConnection(url, user, password);
     }

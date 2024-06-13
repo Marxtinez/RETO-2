@@ -64,9 +64,4 @@ public class ControladorConsultaIncidenciasCurso {
         LocalDate localDate = LocalDate.parse(dateString, formatter);
         return Date.valueOf(localDate);
     }
-
-    public static void main(String[] args) {
-        cargarConsultaIncidenciasPorCurso("2023-01-06", "2024-01-01", "2023-2024");
-        System.out.println(resultados.toString());
-    }
 }

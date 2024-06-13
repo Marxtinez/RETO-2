@@ -81,11 +81,4 @@ public class ControladorConsultaGrupoTutorEmpresas {
             throw new RuntimeException(e);
         }
     }
-    /*
-    public static void main(String[] args) {
-        cargaConsultaGrupoTutorEmpresasC3("CFGS-L","2023-2024");
-        System.out.println(resultados.toString());
-    }
-
-     */
 }

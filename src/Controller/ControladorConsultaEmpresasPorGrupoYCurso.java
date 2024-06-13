@@ -63,11 +63,5 @@ public class ControladorConsultaEmpresasPorGrupoYCurso {
             throw new RuntimeException(e);
         }
     }
-    /*
-    public static void main(String[] args) {
-        cargaConsultaCicloEmpresas("2DAM", "2023-2024");
-        System.out.println(resultados.toString());
-    }
 
-     */
 }

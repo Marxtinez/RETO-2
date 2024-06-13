@@ -45,11 +45,4 @@ public class ControladorConsultaFCTPorEmpresaYCurso {
             throw new RuntimeException(e);
         }
     }
-/*
-    public static void main(String[] args) {
-        cargaConsultasFCTPorEmpresaYCurso("CIF001", "2023-2024");
-        System.out.println(resultados.toString());
-    }
-
- */
 }

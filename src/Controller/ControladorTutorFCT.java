@@ -96,13 +96,4 @@ public class ControladorTutorFCT {
         st.close();
         return id;
     }
-    /*
-    public static void main(String[] args) throws SQLException {
-        cargaContenidoTutores();
-        System.out.println(tutores.toString());
-        //agregaTutor("tutor@example.com", "Nombre Tutor", "123456789");
-        //modificaTutor(11, "modificado@example.com", "Nombre Modificado", "987654321");
-        //eliminaTutor(11);
-    }
-*/
 }
