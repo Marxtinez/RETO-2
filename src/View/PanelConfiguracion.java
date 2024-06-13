@@ -15,7 +15,7 @@ public class PanelConfiguracion extends JPanel {
     JTextField txtUrl,txtNombre,txtPassword;
     static JButton btnAcceder,btnAtras;
     public PanelConfiguracion() {
-        Idioma idioma = new Idioma(Idioma.spanish);
+        Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
 
         lblURl = new JLabel(idioma.getProperty("url"));
         lblUsuario = new JLabel(idioma.getProperty("usuario"));
@@ -82,14 +82,6 @@ public class PanelConfiguracion extends JPanel {
                     PanelAgregarIncidencia.actualizaIdioma(comboIdioma.getSelectedIndex());
                     PanelAgregarTrabajador.actualizaIdioma(comboIdioma.getSelectedIndex());
                     PanelAgregarTutor.actualizaIdioma(comboIdioma.getSelectedIndex());
-                    PanelC1.actualizaIdioma(comboIdioma.getSelectedIndex());
-                    PanelC2.actualizaIdioma(comboIdioma.getSelectedIndex());
-                    PanelC3.actualizaIdioma(comboIdioma.getSelectedIndex());
-                    PanelC4.actualizaIdioma(comboIdioma.getSelectedIndex());
-                    PanelC5.actualizaIdioma(comboIdioma.getSelectedIndex());
-                    PanelC6.actualizaIdioma(comboIdioma.getSelectedIndex());
-                    PanelC7.actualizaIdioma(comboIdioma.getSelectedIndex());
-                    PanelC8.actualizaIdioma(comboIdioma.getSelectedIndex());
                     PanelConsultaEmpresaTutor.actualizaIdioma(comboIdioma.getSelectedIndex());
                     PanelConsultaFCTTutor.actualizaIdioma(comboIdioma.getSelectedIndex());
                     PanelConsultaIncidenciaTutor.actualizaIdioma(comboIdioma.getSelectedIndex());
@@ -103,6 +95,16 @@ public class PanelConfiguracion extends JPanel {
                     PanelModificarTutor.actualizaIdioma(comboIdioma.getSelectedIndex());
                     PanelOpcionesTutor.actualizaIdioma(comboIdioma.getSelectedIndex());
                 }
+                if(PanelC1.btnAtras!=null){
+                    PanelC1.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelC2.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelC3.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelC4.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelC5.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelC6.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelC7.actualizaIdioma(comboIdioma.getSelectedIndex());
+                    PanelC8.actualizaIdioma(comboIdioma.getSelectedIndex());
+                }
                 PanelConfiguracion.actualizaIdioma(comboIdioma.getSelectedIndex());
                 MainPanel.actualizaIdioma(comboIdioma.getSelectedIndex());
                 PanelInicioSesionTutor.actualizaIdioma(comboIdioma.getSelectedIndex());
@@ -114,7 +116,7 @@ public class PanelConfiguracion extends JPanel {
         Idioma idioma = new Idioma(newLang);
 
         btnAtras.setText(idioma.getProperty("atras"));
-        btnAcceder.setText(idioma.getProperty("agregar"));
+        btnAcceder.setText(idioma.getProperty("acceder"));
 
         lblURl.setText(idioma.getProperty("url"));
         lblUsuario.setText(idioma.getProperty("usuario"));

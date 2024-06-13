@@ -15,7 +15,7 @@ public class PanelAgregarIncidencia extends JPanel {
     static JLabel lblIdIncidencia, lblCif, lblDescrip, lblFecha,lblResultado;
     static JButton btnAgregar,btnAtras;
     public PanelAgregarIncidencia() throws SQLException {
-        Idioma idioma = new Idioma(Idioma.spanish);
+        Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
 
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         btnAtras = new JButton(idioma.getProperty("atras"));

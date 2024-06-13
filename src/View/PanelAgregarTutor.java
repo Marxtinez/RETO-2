@@ -15,7 +15,7 @@ public class PanelAgregarTutor extends JPanel {
     static JLabel lblIdTutor, lblNombre, lblEmail, lblTelefono,lblResultado;
     static JButton btnAgregar,btnAtras;
     public PanelAgregarTutor() throws SQLException {
-        Idioma idioma = new Idioma(Idioma.spanish);
+        Idioma idioma = new Idioma(PanelConfiguracion.comboIdioma.getSelectedIndex());
 
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         btnAtras = new JButton(idioma.getProperty("atras"));
